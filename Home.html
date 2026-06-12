@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THE HORSE RACING - Premier Racing Grounds</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffe088",
+                    "secondary-fixed-dim": "#e9c349",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary-container": "#004225",
+                    "surface-container-low": "#f6f3f2",
+                    "on-background": "#1b1c1c",
+                    "surface-container": "#f0eded",
+                    "on-surface": "#1b1c1c",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#373939",
+                    "outline-variant": "#c0c9c0",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#002a15",
+                    "on-primary-fixed-variant": "#165132",
+                    "surface-container-high": "#eae8e7",
+                    "secondary": "#735c00",
+                    "on-secondary-container": "#745c00",
+                    "on-secondary-fixed-variant": "#574500",
+                    "tertiary": "#212424",
+                    "secondary-container": "#fed65b",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "inverse-surface": "#303030",
+                    "surface": "#fbf9f8",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-primary-container": "#75af89",
+                    "inverse-primary": "#98d4ac",
+                    "on-surface-variant": "#404942",
+                    "surface-tint": "#316948",
+                    "primary-fixed": "#b4f0c7",
+                    "surface-bright": "#fbf9f8",
+                    "on-primary-fixed": "#002110",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "primary-fixed-dim": "#98d4ac",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f3f0f0",
+                    "surface-dim": "#dcd9d9",
+                    "on-tertiary-container": "#a1a2a2",
+                    "on-secondary-fixed": "#241a00",
+                    "background": "#fbf9f8",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#717971"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "stack-sm": "4px",
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg": ["Domine"],
+                    "data-tabular": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Domine"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Domine"],
+                    "display-lg": ["Domine"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .live-pulse {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(186, 26, 26, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        .turf-texture {
+            background-image: radial-gradient(#004225 0.5px, transparent 0.5px);
+            background-size: 16px 16px;
+            opacity: 0.05;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-secondary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-primary dark:bg-primary shadow-md border-b-2 border-secondary-container/20">
+<nav class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-bold text-secondary-container">THE HORSE RACING</span>
+<div class="hidden md:flex gap-stack-lg">
+<a class="font-label-caps text-label-caps text-secondary-container border-b-2 border-secondary-container pb-1 transition-colors duration-200" href="#">Today's Races</a>
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Schedule</a>
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Results</a>
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Horse Owner - Jockey</a>
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Predict Result</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="hidden lg:flex items-center font-label-caps text-label-caps text-surface-variant hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined mr-1">search</span> Search
+                </button>
+<button class="font-label-caps text-label-caps text-surface px-4 py-2 hover:text-secondary-fixed transition-colors">Login</button>
+<button class="bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-6 py-2 rounded-lg hover:bg-secondary-fixed transition-all active:opacity-80">Sign In</button>
+</div>
+</nav>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative h-[870px] w-full overflow-hidden flex items-center">
+<div class="absolute inset-0 z-0">
+<img alt="Thoroughbred horses galloping" class="w-full h-full object-cover grayscale-[20%] contrast-125" data-alt="A group of powerful thoroughbred horses galloping at full speed on a pristine turf track during a high-stakes race. The morning light is golden and cinematic, casting long shadows across the green grass and kicking up dust in the wake of the horses. The mood is high-octane and prestigious, reflecting a premium corporate sporting aesthetic with deep racing greens and rich golden highlights. The composition is wide and epic, capturing the intensity and elegance of the athletes in motion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYW0wBlGWqhumTqohupcMqcV_2zxRjOq4GMv8KaI6BERQFAjQ62H40jh4ASKt65g9iKEDtut23QK9gd9XaV2kM08HQP71dLXCcXPsbzjBWv80v95ShSsR7knzlyEQUN5wU-sKDm5udABtDEGGZuvQt8qs8_yhGZL6d06jdwUpN45MDY3LFZ0zcGhQk2tZdBfrCEoyg7KwTqPy6CH5E-tAkkOaRFDx4rY9EgWbGi7EPinIumPknmyx8eqIbfwbhonsega2I-1A5SdlC"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 mb-stack-md">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 font-label-caps text-[10px] tracking-widest rounded-sm">PREMIER GROUNDS</span>
+<div class="h-[1px] w-12 bg-secondary-container"></div>
+</div>
+<h1 class="font-display-lg text-display-lg text-surface-container-lowest mb-stack-lg leading-tight">
+                        Welcome to <br/><span class="text-secondary-container">The Horse Racing</span>
+</h1>
+<p class="font-body-lg text-body-lg text-surface-variant mb-10 max-w-lg">
+                        Experience premier racing at our historic grounds. Check live track conditions, manage stable entries, and enjoy world-class hospitality right at the track.
+                    </p>
+<div class="flex gap-stack-lg">
+<button class="bg-secondary-container text-on-secondary-container px-10 py-4 font-label-caps text-label-caps rounded transition-all hover:bg-secondary-fixed shadow-xl flex items-center gap-2">
+                            Predict Now<span class="material-symbols-outlined">confirmation_number</span>
+</button>
+<button class="border border-surface/30 text-surface px-10 py-4 font-label-caps text-label-caps rounded transition-all hover:bg-surface/10 backdrop-blur-sm">
+                            SCHEDULE TODAY
+                        </button>
+</div>
+</div>
+</div>
+<!-- Floating Data Strip -->
+<div class="absolute bottom-0 left-0 w-full bg-primary-container/80 backdrop-blur-md border-t border-secondary-container/30 py-4">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center overflow-x-auto gap-gutter scrollbar-hide">
+<div class="flex items-center gap-gutter border-r border-secondary-container/20 pr-gutter shrink-0">
+<div class="flex items-center gap-4">
+</div>
+</div>
+<div class="flex items-center gap-gutter shrink-0">
+<span class="font-label-caps text-label-caps text-on-primary-container">Next Race in 14:00 </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Races Section -->
+<!-- Live Race Card 1 -->
+<!-- Live Race Card 2 -->
+<!-- Live Race Card 3 -->
+<!-- Upcoming Schedule -->
+<section class="bg-primary py-24 text-surface relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-secondary-container/5 transform skew-x-12 translate-x-20"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10">
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg mb-2">Upcoming Local Schedule</h2>
+<p class="font-body-md text-surface-variant max-w-lg">Today's post times and track conditions for all upcoming races at The Horse Racing.</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="border-b border-surface/20 text-left">
+<th class="pb-6 font-label-caps text-label-caps text-secondary-container uppercase">Time</th>
+<th class="pb-6 font-label-caps text-label-caps text-secondary-container uppercase">Event</th>
+<th class="pb-6 font-label-caps text-label-caps text-secondary-container uppercase">Course</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface/10">
+<tr class="hover:bg-surface/5 transition-colors group">
+<td class="py-6 font-data-tabular text-data-tabular">14:00 Today</td>
+<td class="py-6">
+<div class="font-headline-md text-body-lg font-bold">The Elite Stakes</div>
+<div class="text-surface-variant font-label-caps text-[11px]">RACE 7 • 3YO ONLY</div>
+</td>
+<td class="py-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container text-sm">location_on</span>
+<span class="font-body-md">Main Dirt Track</span>
+</td>
+<td class="py-6 text-right">
+</td>
+</tr>
+<tr class="hover:bg-surface/5 transition-colors group">
+<td class="py-6 font-data-tabular text-data-tabular">18:30 Today</td>
+<td class="py-6">
+<div class="font-headline-md text-body-lg font-bold">Turf Classic</div>
+<div class="text-surface-variant font-label-caps text-[11px]">RACE 8 • 3YO+</div>
+</td>
+<td class="py-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container text-sm">location_on</span>
+<span class="font-body-md">Inner Turf Course</span>
+</td>
+<td class="py-6 text-right">
+</td>
+</tr>
+<tr class="hover:bg-surface/5 transition-colors group">
+<td class="py-6 font-data-tabular text-data-tabular">22:00 Today</td>
+<td class="py-6">
+<div class="font-headline-md text-body-lg font-bold">Evening Sprint</div>
+<div class="text-surface-variant font-label-caps text-[11px]">RACE 9 • 4YO+</div>
+</td>
+<td class="py-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container text-sm">location_on</span>
+<span class="font-body-md">Main Dirt Track</span>
+</td>
+<td class="py-6 text-right">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Latest News Section -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex items-center justify-between mb-12">
+<h2 class="font-headline-lg text-headline-lg text-primary">NEWS</h2>
+<button class="flex items-center gap-2 font-label-caps text-label-caps text-primary">
+                        ALL UPDATES <span class="material-symbols-outlined">arrow_right_alt</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- News Item 1 -->
+<div class="bg-surface group cursor-pointer overflow-hidden border border-outline-variant">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Racehorse health monitoring" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A close-up shot of a magnificent racehorse receiving specialized athletic care from a veterinarian. The setting is a clean, state-of-the-art equestrian stable with soft, natural morning light filtering through the windows. The mood is calm, professional, and authoritative, focusing on the high-end health and wellness of the animal athletes. The color palette features natural wood tones, deep emerald blankets, and soft ivory whites, maintaining a prestigious corporate sports aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCosjl0cYY8SirgWyK8Ea3HLBmtI-nDjXw1IqvFQwkZmZN7zckbR9ChVKDauexIueEacBCUInilxa9rzxhfWySG4-Xt_NGYIC55GNc9bhMM8otNLIu4iePlxCGoRWQV5vI9DzsSKrQbu8ELJ5u0qlV4egXFZsyeLb5Uq_X_KPnOqTFqTjHete4qnUTrPXVTyDHRCSRwl5YzUfGq92RDjwvyMjk8FoFQ8SxODOzQ2D9u53sz_yRcG-_dp5yAfwkA4_Va11Tkm4KF82px"/>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase mb-2 block">Track Maintenance</span>
+<h4 class="font-headline-md text-[18px] text-primary leading-snug group-hover:text-secondary-container transition-colors mb-4">
+                                Main dirt track resurfacing scheduled for next week
+                            </h4>
+<p class="font-body-md text-sm text-outline-variant line-clamp-2">Ensuring optimal safety and performance for all upcoming major stakes races.</p>
+</div>
+</div>
+<!-- News Item 2 -->
+<div class="bg-surface group cursor-pointer overflow-hidden border border-outline-variant">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Jockey preparation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A professional jockey in vibrant racing silks adjusting their equipment in the paddock area. The background shows the bustling atmosphere of a championship racetrack under a clear blue sky. The lighting is bright and high-contrast, emphasizing the textures of the silk and the leather tack. The mood is high-stakes and focused, capturing the prestige of elite human athletes in the sport. The aesthetic is clean and modern, following a corporate sporting visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRIig3JUoJo-yGDfEvLTjNMXzx-gKO-QBP5a6BipGajNLh72k7t1wMiUlRGrLWdzLKd-JCrF-zK_PI2Eyd9WtDgxwjEzQVgyxqZFS9MaBOhfwLfvZkbipZ0sF5CErhcvyCaq4uzKB0-4h49pbVTp8Cm5Di4ZGshe1K5YiRAGXnOS6tKSrPKwe2qAhDJLetebXzIlbfa1ud3Ken1U6n-sHDrYbEPWD7SY_zdl2Luf_Le3X6GVX5aUVN6PGnoxe49X7i-Ey1V7VDnLc8"/>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase mb-2 block">New Dining</span>
+<h4 class="font-headline-md text-[18px] text-primary leading-snug group-hover:text-secondary-container transition-colors mb-4">
+                                Grandstand restaurant introduces new seasonal menu
+                            </h4>
+<p class="font-body-md text-sm text-outline-variant line-clamp-2">Enjoy locally sourced ingredients while taking in the best views of the track.</p>
+</div>
+</div>
+<!-- News Item 3 -->
+<div class="bg-surface group cursor-pointer overflow-hidden border border-outline-variant">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Training ground" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An expansive aerial view of a legendary horse training facility at sunrise. The tracks are perfectly manicured, surrounded by lush rolling hills and white picket fences. A layer of mist hangs over the valley, creating a serene and elite atmosphere. The lighting is warm and golden, highlighting the architectural beauty of the stables. The overall mood is authoritative and institutional, representing the heritage and success of a world-class racing academy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtSTW3a7HRc6LtQC28hEEQ11HUC7fMZmeYSSMSJYsl9RP46dqx5fQk_8bZS_moQRHR8zxHRHq1wPMlLaMe6bq344iUD-8Ne4kdnBDQzitfPKPKh9EC7Q3ryeb3SxAG43XKnmy5Ilg9a5YvQ23lgWyduB5-WA2awo14wFAMORsBikrIErnkicxyN6Ra0U-__eSsTIn0eAm-yOTH9yHvkGG2SkpsUySovHNsQTumwrCie_DRZgijXiBA9VgSCz394ZWbA2WpzllaIEyI"/>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase mb-2 block">Stable Upgrades</span>
+<h4 class="font-headline-md text-[18px] text-primary leading-snug group-hover:text-secondary-container transition-colors mb-4">
+                                Barn 4 renovations complete, featuring new ventilation
+                            </h4>
+<p class="font-body-md text-sm text-outline-variant line-clamp-2">Our commitment to providing the best possible environment for our equine athletes.</p>
+</div>
+</div>
+<!-- News Item 4 -->
+<div class="bg-surface group cursor-pointer overflow-hidden border border-outline-variant">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Racing equipment" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A detailed, macro shot of premium leather horse racing saddles and golden bits arranged in a luxury tack room. The materials look tactile and expensive, with deep browns and polished brass reflecting a soft, warm light. The background is a dark, sophisticated wood grain. The mood is expensive and traditional, emphasizing the craftsmanship and history behind the sport's high-end gear. The aesthetic aligns with a prestigious corporate identity focusing on quality and excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpbh2nALBUAr_-RtSF9re-KUNbrBrZDzS4fZ2084AmnvsCXFcEsgneFPu9Iv9f7L8x8X_Q1hJYurNqtQMteALNGsk59gRwz7z6LptsEPgA8MduQcs_VWk49vio5UAmZyG8D5XEqgP-7a-_R5oQ2nDnoSZopLid1hgh2rCao_rqe5LQOPeqfYR76J14x7IKB4ag_n_8b6pylGAN83-DopfcOz9V9xr8SpxWeCcbTgh3RQdaqZ4sTZ19z5q0KqYc_l8tiG7e_v8p5vN-"/>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase mb-2 block">Facility News</span>
+<h4 class="font-headline-md text-[18px] text-primary leading-snug group-hover:text-secondary-container transition-colors mb-4">
+                                Upgraded paddock viewing area opens to the public
+                            </h4>
+<p class="font-body-md text-sm text-outline-variant line-clamp-2">Get closer to the action and see the contenders before they head to the gate.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg flex flex-col items-center gap-stack-md px-margin-desktop bg-tertiary dark:bg-on-background">
+<div class="w-full max-w-container-max flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-lg border-b border-surface/10 pb-stack-lg">
+<span class="font-headline-md text-headline-md text-secondary-container">Horse Racing</span>
+<div class="flex flex-wrap gap-x-gutter gap-y-stack-sm">
+<a class="font-body-md text-body-md text-surface-variant hover:text-secondary-fixed transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-surface-variant hover:text-secondary-fixed transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-surface-variant hover:text-secondary-fixed transition-colors cursor-pointer" href="#">Responsible Gaming</a>
+<a class="font-body-md text-body-md text-surface-variant hover:text-secondary-fixed transition-colors cursor-pointer" href="#">Contact Us</a>
+<a class="font-body-md text-body-md text-surface-variant hover:text-secondary-fixed transition-colors cursor-pointer" href="#">About The Track</a>
+</div>
+</div>
+<div class="w-full max-w-container-max flex flex-col md:flex-row justify-between items-center py-4">
+<p class="font-body-md text-body-md text-surface-variant/60 text-center md:text-left">
+                © 2024 The Horse Racing Management. All rights reserved. Professional Racing Authority.
+            </p>
+<div class="flex gap-4 mt-4 md:mt-0">
+<span class="material-symbols-outlined text-surface-variant cursor-pointer hover:text-secondary-fixed">face_nod</span>
+<span class="material-symbols-outlined text-surface-variant cursor-pointer hover:text-secondary-fixed">public</span>
+<span class="material-symbols-outlined text-surface-variant cursor-pointer hover:text-secondary-fixed">mail</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple odds randomizer for "live" feel
+        setInterval(() => {
+            const oddsButtons = document.querySelectorAll('.bg-secondary-container.font-data-tabular');
+            oddsButtons.forEach(btn => {
+                if (Math.random() > 0.8) {
+                    const current = parseFloat(btn.innerText);
+                    const change = (Math.random() * 0.1 - 0.05).toFixed(2);
+                    const newVal = (current + parseFloat(change)).toFixed(2);
+                    if (newVal > 1.1) {
+                        btn.innerText = newVal;
+                        btn.classList.add('bg-secondary-fixed-dim');
+                        setTimeout(() => btn.classList.remove('bg-secondary-fixed-dim'), 500);
+                    }
+                }
+            });
+        }, 3000);
+    </script>
+</body></html>
