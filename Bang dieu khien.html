@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EquinePro - Bảng Điều Khiển Chủ Sở Hữu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#454747",
+                        "background": "#fbf9f8",
+                        "surface-container-highest": "#e4e2e1",
+                        "surface": "#fbf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "on-background": "#1b1c1c",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-tertiary-container": "#a1a2a2",
+                        "tertiary-container": "#373939",
+                        "tertiary": "#212424",
+                        "surface-container-high": "#eae8e7",
+                        "surface-container": "#f0eded",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c0c9c0",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#241a00",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404942",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#745c00",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#303030",
+                        "inverse-on-surface": "#f3f0f0",
+                        "primary-container": "#004225",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#98d4ac",
+                        "on-surface": "#1b1c1c",
+                        "on-secondary-fixed-variant": "#574500",
+                        "surface-variant": "#e4e2e1",
+                        "outline": "#717971",
+                        "on-primary-container": "#75af89",
+                        "on-error": "#ffffff",
+                        "secondary": "#735c00",
+                        "on-primary-fixed": "#002110",
+                        "secondary-container": "#fed65b",
+                        "primary-fixed": "#b4f0c7",
+                        "on-primary-fixed-variant": "#165132",
+                        "secondary-fixed": "#ffe088",
+                        "surface-bright": "#fbf9f8",
+                        "inverse-primary": "#98d4ac",
+                        "surface-tint": "#316948",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#002a15"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-md": "12px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "container-max": "1280px",
+                        "stack-sm": "4px",
+                        "base": "8px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Domine"],
+                        "headline-lg": ["Domine"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "display-lg": ["Domine"],
+                        "data-tabular": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Domine"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #fbf9f8; color: #1b1c1c; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="flex bg-background font-body-md text-on-background min-h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-label-caps text-label-caps docked left-0 h-full w-64 shadow-md fixed left-0 top-0 h-full flex-col py-stack-lg z-40">
+<div class="px-gutter mb-stack-lg flex flex-col items-start">
+<div class="flex items-center gap-base mb-stack-sm">
+<img alt="Organization Logo" class="w-12 h-12 rounded-full border-2 border-secondary-fixed object-cover" data-alt="A sophisticated crest-style logo for a premium horse racing stable, featuring an abstract geometric horse profile integrated with a shield motif. The logo utilizes deep racing green and metallic gold accents against a crisp white circular background. The design is authoritative, corporate, and modern, reflecting the high-octane luxury aesthetic of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG8LwaknxXFuj0d3YpUQjd7gUK106jLOCd_7pAFOAGwu018N2hqAehYcKKqcURIkUM8l1F-TEvdKD5PNvV2YoYGa8XrMCyUS5WgXbBsdHdeA5bRNCnlsEpIVXKPEecUjY00my0gOo2rClQ9PaaZ5_AKzvvpt0EYuWoy5eku5YenW0pQK_B6m1D1baQ5tDOaUPz_N8ymzu55EoJMwg550sVk-Ipy1PBqf2cqKvE2590oac3TR6kfHqfweZBXN2MPuJMa_AR_AK-9K4C"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-secondary">EquinePro Elite</h1>
+<p class="font-label-caps text-label-caps opacity-80 mt-stack-sm">Quản Lý Đua Ngựa Cao Cấp</p>
+</div>
+</div>
+<button class="w-full mt-stack-md bg-secondary-fixed text-on-secondary-fixed py-2 px-4 rounded font-label-caps text-label-caps hover:bg-secondary-container transition-colors shadow-[0_4px_20px_rgba(0,66,37,0.08)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span> Thêm Ngựa Mới
+</button>
+</div>
+<div class="flex-grow overflow-y-auto px-4 space-y-stack-sm">
+<!-- Active Tab -->
+<a class="flex items-center gap-base text-secondary-fixed bg-on-primary-fixed-variant rounded-lg border-l-2 border-secondary-fixed px-4 py-3 cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>Bảng Điều Khiển</span>
+</a>
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="garage">garage</span>
+<span>Quản Lý Chuồng Ngựa</span>
+</a>
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span>Lịch Đua</span>
+</a>
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span>Tuyển Dụng Nài Ngựa</span>
+</a>
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Tài Chính</span>
+</a>
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span>Hiệu Suất</span>
+</a>
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span>Hỗ Trợ</span>
+</a>
+</div>
+<div class="px-4 pt-stack-md mt-auto border-t border-on-primary-fixed-variant space-y-stack-sm">
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Cài Đặt</span>
+</a>
+<a class="flex items-center gap-base text-on-primary opacity-80 px-4 py-3 hover:bg-primary-fixed-variant hover:opacity-100 transition-all cursor-pointer active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Đăng Xuất</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-grow md:ml-64 flex flex-col relative w-full">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-background font-headline-md text-headline-md docked full-width top-0 border-b border-surface-variant dark:border-tertiary-container flat no shadows fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 md:pl-72">
+<div class="flex items-center">
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed hidden md:block">EquinePro</h2>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface focus:border-primary focus:ring-0 font-body-md text-body-md w-64" placeholder="Tìm kiếm..." type="text"/>
+</div>
+<div class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container">
+<button class="hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover ml-stack-sm cursor-pointer" data-alt="A professional headshot of a mature male executive or stable owner, dressed in a sharp tailored suit with a subtle racing green tie. The portrait is captured against a clean, light-mode background with soft, high-key studio lighting. The mood conveys authority, prestige, and high-octane luxury associated with elite horse racing management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6mTGlH24wCxOkb1eUamayA0-lN3GSAbenQeVUGnWqorwsIE8Zzc5UidnwKxS0ZpDHG5r4t_j0uSzw81M9rIUo6y-5COfaqeOjFOWnAC3hMZs8JqATbxf7KN7XpptxtfawmXI-gcla5B1YhtRX8tL73KNCE41sLPDCQk6cZ8c0iQxfzZ3xI87cSAGjepjqz-wCmphxHDeivMx4BGl8FAN3pPG3SvDqTAqpI9MHBJ7OdovSvVsspj8WQeaE_7xe9Qq99MQKqzbVoHAW"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<main class="flex-grow p-margin-desktop mt-16 mt-[64px] max-w-container-max mx-auto w-full">
+<div class="mb-stack-lg">
+<h1 class="font-display-lg text-display-lg text-primary mb-stack-sm">Bảng Điều Khiển Chủ Sở Hữu</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Chào mừng trở lại. Đây là dữ liệu hiệu suất mới nhất cho chuồng ngựa của bạn.</p>
+</div>
+<!-- Summary Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<div class="bg-surface-container-lowest border border-surface-variant p-stack-lg rounded-lg relative overflow-hidden group hover:shadow-[0_4px_20px_rgba(0,66,37,0.08)] transition-all duration-300">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-stack-md uppercase tracking-wider">Tổng Số Ngựa</h3>
+<div class="flex items-end gap-stack-sm">
+<span class="font-display-lg text-display-lg text-primary">12</span>
+<span class="font-data-tabular text-data-tabular text-on-surface-variant mb-2">Đang Hoạt Động</span>
+</div>
+</div>
+<div class="bg-primary border border-primary-container p-stack-lg rounded-lg relative overflow-hidden group shadow-md hover:shadow-[0_4px_20px_rgba(0,66,37,0.15)] transition-all duration-300">
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+<h3 class="font-label-caps text-label-caps text-secondary-fixed mb-stack-md uppercase tracking-wider relative z-10">Các Giải Đua</h3>
+<div class="flex items-end gap-stack-sm relative z-10">
+<span class="font-display-lg text-display-lg text-on-primary">3</span>
+<span class="font-data-tabular text-data-tabular text-primary-fixed-dim mb-2">Tuần Này</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-surface-variant p-stack-lg rounded-lg relative overflow-hidden group hover:shadow-[0_4px_20px_rgba(0,66,37,0.08)] transition-all duration-300">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-stack-md uppercase tracking-wider">Thu Nhập Hàng Tháng</h3>
+<div class="flex items-end gap-stack-sm">
+<span class="font-display-lg text-display-lg text-secondary">$42,500</span>
+<span class="font-data-tabular text-data-tabular text-primary mb-2 flex items-center">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="trending_up">trending_up</span>
+                            +15%
+                        </span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- My Stable Overview (Left Column - Span 2) -->
+<section class="lg:col-span-2 space-y-gutter">
+<div class="flex justify-between items-center border-b border-surface-variant pb-stack-sm">
+<h2 class="font-headline-md text-headline-md text-primary">Ngựa Đã Đăng Ký</h2>
+<a class="font-label-caps text-label-caps text-secondary hover:underline underline-offset-4 decoration-2" href="#">Xem Tất Cả</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Horse Card 1 -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group hover:shadow-[0_4px_20px_rgba(0,66,37,0.08)] transition-shadow">
+<div class="h-40 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="Horse Thunderbolt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cinematic, high-contrast action photograph of a sleek, dark bay racehorse named Thunderbolt galloping intensely on a dirt track. The image features a subtle vignette to ensure UI overlays remain legible, while the background exhibits a slight motion blur to convey adrenaline and speed. Lighting is natural, emphasizing the muscular structure of the horse, fitting the high-octane luxury aesthetic of a premium racing application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzNR5Rb1evzvswTBcgA2vBOvxIfXg4b1yrir4YttCKTFMONKnVsa4CNI_eC1mO_QVF_F0LSe5mEqDxGyZsSHdY8bLRpU8QE8okfWgC6JH-PojJVEyK4AVdPhHBH92x9Axp4yAY2FTDXhagIwcDc2AjESS4x8umXo_n1qOrezFoY0NAGqw-pOWQ70zdJA0X1XuPnGSpaDFZyfgTTbiLk30Pn323ED_haEWTlAYfSFKRq6uSGiRAR72XM6Yv_FhoPzmH_70Qo_xWS-dX"/>
+<div class="absolute bottom-4 left-4 z-20 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-on-primary uppercase tracking-wider">Đua Ngày Mai</span>
+</div>
+</div>
+<div class="p-stack-md bg-surface-container-lowest border-t-0 border border-surface-variant rounded-b-lg flex-grow">
+<div class="flex justify-between items-start mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-primary">Thunderbolt</h3>
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant font-label-caps text-label-caps rounded">Ngựa Đực 4 Tuổi</span>
+</div>
+<div class="grid grid-cols-2 gap-stack-sm mt-stack-md">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 opacity-70">Huấn Luyện Viên</p>
+<p class="font-data-tabular text-data-tabular text-on-background">M. Henderson</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 opacity-70">Thu Nhập Sự Nghiệp</p>
+<p class="font-data-tabular text-data-tabular text-secondary font-bold">$125,000</p>
+</div>
+</div>
+<button class="w-full mt-stack-lg border border-primary text-primary hover:bg-primary/5 py-2 rounded font-label-caps text-label-caps transition-colors">Xem Chi Tiết</button>
+</div>
+</div>
+<!-- Horse Card 2 -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group hover:shadow-[0_4px_20px_rgba(0,66,37,0.08)] transition-shadow">
+<div class="h-40 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="Horse Midnight Sun" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A majestic profile shot of a striking black thoroughbred horse named Midnight Sun, standing calmly but alertly in a pristine, well-lit stable corridor. The lighting is soft and natural, creating a serene yet powerful mood. The composition leaves generous negative space for UI elements, adhering to the crisp white and deep racing green palette of a corporate, modern racing application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxps3C9LcE4ISeqL48ZoU5KQrrQ__L6cx4NXzwdTePI3W2k3r4Eq_djYJNpoVdcTAKP2WkwLWZm52SC4spZ0m_oZ7jdDK5PSvB7aGgGJUIIZstkCsBT8Kyb5l5crGtgFXgthJMSoGyXSuJUXFvZoa3XuMERwCjXxkVuLsey5fH-unM4BZaIdJt5k2U1LLSB8vkS-LfPjR_NHbbgwAtvtHYCdXFcy0BYnysEWdq8_L0j8bkieOEsZzNNqKONljtsyXiBnWLVZYrQiic"/>
+<div class="absolute bottom-4 left-4 z-20 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+<span class="font-label-caps text-label-caps text-on-primary uppercase tracking-wider">Đang Huấn Luyện</span>
+</div>
+</div>
+<div class="p-stack-md bg-surface-container-lowest border-t-0 border border-surface-variant rounded-b-lg flex-grow">
+<div class="flex justify-between items-start mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-primary">Midnight Sun</h3>
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant font-label-caps text-label-caps rounded">Ngựa Cái 3 Tuổi</span>
+</div>
+<div class="grid grid-cols-2 gap-stack-sm mt-stack-md">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 opacity-70">Huấn Luyện Viên</p>
+<p class="font-data-tabular text-data-tabular text-on-background">S. Reynolds</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 opacity-70">Thu Nhập Sự Nghiệp</p>
+<p class="font-data-tabular text-data-tabular text-secondary font-bold">$48,200</p>
+</div>
+</div>
+<button class="w-full mt-stack-lg border border-primary text-primary hover:bg-primary/5 py-2 rounded font-label-caps text-label-caps transition-colors">Xem Chi Tiết</button>
+</div>
+</div>
+</div>
+<!-- Pending Approval Section -->
+<div class="mt-stack-lg">
+<div class="flex justify-between items-center border-b border-surface-variant pb-stack-sm mb-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-surface-variant opacity-80 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+        Ngựa Chờ Phê Duyệt
+    </h2>
+</div>
+<ul class="space-y-stack-md">
+<li class="flex items-center gap-stack-md p-stack-md bg-surface-container-low border border-surface-variant border-dashed rounded-lg opacity-80">
+<div class="w-12 h-12 bg-surface-variant rounded overflow-hidden flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" data-icon="pets">pets</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-2">
+<h4 class="font-data-tabular text-data-tabular font-bold text-on-background">Golden Glory</h4>
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant font-label-caps text-[10px] rounded uppercase">Đang chờ duyệt</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px] mt-1">Gửi ngày 20 Thg 10 • Yêu cầu xác minh huyết thống</p>
+</div>
+<div class="text-right">
+<button class="text-secondary hover:text-secondary-fixed transition-colors font-label-caps text-label-caps">Xem Yêu Cầu</button>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<!-- Right Column -->
+<div class="space-y-gutter">
+<!-- Financial Performance Chart Placeholder -->
+<section class="bg-surface-container-lowest border border-surface-variant p-stack-lg rounded-lg shadow-sm">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md">Hiệu Suất Tài Chính</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-lg">Thu nhập trong 6 tháng qua</p>
+<div class="h-48 relative w-full flex items-end gap-2 justify-between px-2 pb-6 border-b border-surface-variant">
+<!-- Minimalist CSS Bar Chart Representation -->
+<div class="w-1/6 bg-surface-container-highest hover:bg-primary transition-colors rounded-t-sm h-[30%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-tabular text-[10px] opacity-0 group-hover:opacity-100">$12k</span>
+</div>
+<div class="w-1/6 bg-surface-container-highest hover:bg-primary transition-colors rounded-t-sm h-[50%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-tabular text-[10px] opacity-0 group-hover:opacity-100">$20k</span>
+</div>
+<div class="w-1/6 bg-surface-container-highest hover:bg-primary transition-colors rounded-t-sm h-[40%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-tabular text-[10px] opacity-0 group-hover:opacity-100">$16k</span>
+</div>
+<div class="w-1/6 bg-surface-container-highest hover:bg-primary transition-colors rounded-t-sm h-[70%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-tabular text-[10px] opacity-0 group-hover:opacity-100">$28k</span>
+</div>
+<div class="w-1/6 bg-surface-container-highest hover:bg-primary transition-colors rounded-t-sm h-[60%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-tabular text-[10px] opacity-0 group-hover:opacity-100">$24k</span>
+</div>
+<div class="w-1/6 bg-secondary hover:bg-secondary-container transition-colors rounded-t-sm h-[100%] relative group shadow-[0_4px_10px_rgba(212,175,55,0.3)]">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-tabular text-[10px] opacity-0 group-hover:opacity-100 font-bold">$42.5k</span>
+</div>
+</div>
+<div class="flex justify-between text-[10px] font-label-caps text-on-surface-variant mt-2 opacity-70">
+<span>Thg 1</span>
+<span>Thg 2</span>
+<span>Thg 3</span>
+<span>Thg 4</span>
+<span>Thg 5</span>
+<span>Thg 6</span>
+</div>
+</section>
+<!-- Upcoming Engagements -->
+<section class="bg-surface-container-lowest border border-surface-variant p-stack-lg rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-stack-md border-b border-surface-variant pb-stack-sm">
+<h2 class="font-headline-md text-headline-md text-primary">Lịch Trình Sắp Tới</h2>
+</div>
+<ul class="space-y-stack-md mt-stack-md">
+<li class="flex items-center gap-stack-md p-stack-sm hover:bg-surface-container rounded transition-colors group cursor-pointer">
+<div class="bg-primary/10 text-primary p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="flag">flag</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-data-tabular text-data-tabular font-bold text-on-background group-hover:text-primary transition-colors">Thunderbolt</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">Trường đua Ascot • 14:30 GMT</p>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps text-error bg-error-container px-2 py-1 rounded">Ngày Mai</span>
+</div>
+</li>
+<li class="flex items-center gap-stack-md p-stack-sm hover:bg-surface-container rounded transition-colors group cursor-pointer">
+<div class="bg-surface-variant text-on-surface-variant p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-data-tabular text-data-tabular font-bold text-on-background group-hover:text-primary transition-colors">Midnight Sun</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">Khám Thú Y Định Kỳ</p>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps text-on-surface-variant opacity-70">24 Thg 10</span>
+</div>
+</li>
+<li class="flex items-center gap-stack-md p-stack-sm hover:bg-surface-container rounded transition-colors group cursor-pointer">
+<div class="bg-secondary/10 text-secondary p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="stadium">stadium</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-data-tabular text-data-tabular font-bold text-on-background group-hover:text-primary transition-colors">Crimson Tide</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">Churchill Downs • Tập Luyện</p>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps text-on-surface-variant opacity-70">28 Thg 10</span>
+</div>
+</li>
+</ul>
+</section>
+</div>
+</div>
+</main>
+</div>
+</body></html>

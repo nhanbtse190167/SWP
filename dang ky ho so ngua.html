@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đăng ký Chủ ngựa - Derby Elite</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#735c00",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#241a00",
+                    "on-surface-variant": "#404942",
+                    "on-secondary-container": "#745c00",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-secondary-fixed-variant": "#574500",
+                    "surface-container": "#f0eded",
+                    "tertiary-container": "#373939",
+                    "secondary-container": "#fed65b",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-tint": "#316948",
+                    "primary-fixed-dim": "#98d4ac",
+                    "on-tertiary-container": "#a1a2a2",
+                    "on-primary-fixed-variant": "#165132",
+                    "secondary-fixed-dim": "#e9c349",
+                    "on-surface": "#1b1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#98d4ac",
+                    "background": "#fbf9f8",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface": "#fbf9f8",
+                    "secondary-fixed": "#ffe088",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "tertiary": "#212424",
+                    "outline": "#717971",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dcd9d9",
+                    "primary": "#002a15",
+                    "on-background": "#1b1c1c",
+                    "surface-container-high": "#eae8e7",
+                    "primary-fixed": "#b4f0c7",
+                    "outline-variant": "#c0c9c0",
+                    "primary-container": "#004225",
+                    "on-primary-container": "#75af89",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "surface-variant": "#e4e2e1",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002110",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#e2e2e2",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "stack-lg": "24px",
+                    "margin-mobile": "16px",
+                    "stack-md": "12px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "stack-sm": "4px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg-mobile": [
+                            "Domine"
+                    ],
+                    "body-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-caps": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg": [
+                            "Domine"
+                    ],
+                    "data-tabular": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-md": [
+                            "Domine"
+                    ],
+                    "display-lg": [
+                            "Domine"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-tabular": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for form column */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbf9f8; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dcd9d9; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #717971; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-hidden">
+<main class="flex w-full h-screen">
+<!-- Left Column: Atmospheric Image -->
+<section class="hidden lg:block lg:w-5/12 relative h-full bg-primary-container">
+<!-- Background Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A cinematic, high-contrast photograph of a majestic thoroughbred horse silhouetted against a softly glowing dawn sky at the racetrack. The lighting is moody and premium, emphasizing the powerful musculature of the animal and the fine mist hovering over the turf. The color palette leans heavily into deep, velvety shadows and subtle hints of trophy gold catching the rim light, perfectly capturing the authoritative and high-octane prestige of professional horse racing." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4LmEG0262AJemAyRsCm365jZP5S1O7_wpld4x7YNlsasNCH63xpy9Uc_WRs7jUQFSZtMgrU4SIg7CH1Ddq01bptq7JihqdO78vXjOwoYFAHpTO9N768iEM2yI7Mnj1_qI4XepRvca6iU0o5r8mWJOb--LRMKlPPW5UzXrG8Ve7P_k6ydKyLbymy42ZZ05IhI0vG_nNbiVgFIgk0yCpEcTiIVY6QIiMhFG7xmrXWY19vUsDw9L56btncBzP1sBGPL1KBLUzzBK3UwB');">
+</div>
+<!-- Gradient Overlay for legibility and brand tone -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
+<!-- Floating Brand Element -->
+<div class="absolute bottom-12 left-12">
+<h1 class="font-display-lg text-display-lg text-secondary-container">DERBY ELITE</h1>
+<p class="font-body-lg text-body-lg text-surface-container-low mt-2 max-w-sm">
+                    Gia nhập cộng đồng chủ ngựa danh giá. Quản lý chiến mã, theo dõi phong độ và vươn tới đỉnh cao vinh quang.
+                </p>
+</div>
+</section>
+<!-- Right Column: Registration Form -->
+<section class="w-full lg:w-7/12 h-full overflow-y-auto bg-surface flex flex-col items-center py-10 px-6 sm:px-12 lg:py-16">
+<div class="w-full max-w-[600px] flex flex-col relative">
+<!-- Mobile Brand Header (Hidden on Desktop) -->
+<div class="lg:hidden w-full flex flex-col items-center mb-8">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight">DERBY ELITE</span>
+</div>
+<!-- Page Header -->
+<div class="mb-10 text-center lg:text-left">
+<h2 class="font-headline-lg text-headline-lg text-primary">Đăng ký Chủ ngựa</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Hoàn thiện hồ sơ để bắt đầu hành trình của bạn tại Derby Elite.</p>
+</div>
+<!-- Form Canvas -->
+<form class="w-full flex flex-col gap-8">
+<!-- SECTION 1: Personal Information -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 sm:p-8">
+<div class="flex items-center gap-2 mb-6 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">person</span>
+<h3 class="font-headline-md text-headline-md text-primary">Thông tin cá nhân</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Field -->
+<div class="col-span-1 md:col-span-2">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="fullname">Họ và Tên</label>
+<input class="w-full h-12 px-4 rounded border border-outline bg-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface outline-none transition-colors" id="fullname" placeholder="Nhập họ và tên đầy đủ" type="text"/>
+</div>
+<!-- Field -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="idcard">CMND / Hộ chiếu</label>
+<input class="w-full h-12 px-4 rounded border border-outline bg-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface outline-none transition-colors" id="idcard" placeholder="Số giấy tờ tùy thân" type="text"/>
+</div>
+<!-- Field -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="phone">Số điện thoại</label>
+<input class="w-full h-12 px-4 rounded border border-outline bg-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface outline-none transition-colors" id="phone" placeholder="+84" type="tel"/>
+</div>
+<!-- Field -->
+<div class="col-span-1 md:col-span-2">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="email">Địa chỉ Email</label>
+<input class="w-full h-12 px-4 rounded border border-outline bg-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface outline-none transition-colors" id="email" placeholder="example@domain.com" type="email"/>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Stable Information -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 sm:p-8">
+<div class="flex items-center gap-2 mb-6 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">stadium</span>
+<h3 class="font-headline-md text-headline-md text-primary">Thông tin chuồng ngựa</h3>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- Field -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="stablename">Tên Chuồng (Stable Name)</label>
+<input class="w-full h-12 px-4 rounded border border-outline bg-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface outline-none transition-colors" id="stablename" placeholder="Nhập tên chuồng ngựa đăng ký" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Field -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="location">Địa điểm</label>
+<div class="relative">
+<select class="w-full h-12 px-4 appearance-none rounded border border-outline bg-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface outline-none transition-colors" id="location">
+<option disabled="" selected="" value="">Chọn khu vực</option>
+<option value="hcm">Khu vực Miền Nam</option>
+<option value="hn">Khu vực Miền Bắc</option>
+<option value="other">Khu vực khác</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Field -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="capacity">Sức chứa (Số lượng ngựa)</label>
+<input class="w-full h-12 px-4 rounded border border-outline bg-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface outline-none transition-colors" id="capacity" min="1" placeholder="Ví dụ: 10" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Verification -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 sm:p-8">
+<div class="flex items-center gap-2 mb-6 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">verified_user</span>
+<h3 class="font-headline-md text-headline-md text-primary">Xác thực hồ sơ</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Vui lòng tải lên tài liệu xác minh danh tính và Giấy chứng nhận sở hữu (nếu có) để đẩy nhanh quá trình duyệt.</p>
+<!-- Upload Area -->
+<div class="w-full border-2 border-dashed border-outline-variant rounded-lg p-8 flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-variant hover:border-primary cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl text-outline group-hover:text-primary mb-3 transition-colors">cloud_upload</span>
+<span class="font-data-tabular text-data-tabular text-on-surface mb-1">Nhấn để tải lên hoặc kéo thả tệp vào đây</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Hỗ trợ: PDF, JPG, PNG (Tối đa 10MB)</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-4 flex flex-col gap-6">
+<!-- Terms -->
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary bg-surface transition-colors" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant">
+                                Tôi xác nhận rằng các thông tin trên là chính xác và đồng ý với 
+                                <a class="text-primary hover:underline font-semibold" href="#">Điều khoản dịch vụ</a> và 
+                                <a class="text-primary hover:underline font-semibold" href="#">Chính sách bảo mật</a> của Derby Elite.
+                            </span>
+</label>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-caps text-label-caps uppercase tracking-wider shadow-md hover:bg-primary-container transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="button">
+                            Hoàn tất đăng ký
+                        </button>
+<!-- Login Link -->
+<div class="text-center font-body-md text-body-md text-on-surface-variant">
+                            Đã có tài khoản? <a class="text-primary font-semibold hover:text-primary-container transition-colors" href="#">Đăng nhập ngay</a>
+</div>
+</div>
+</form>
+</div>
+<!-- Footer text for form -->
+<div class="w-full max-w-[600px] mt-12 text-center border-t border-surface-variant pt-6">
+<p class="font-label-caps text-label-caps text-outline">
+                    © 2024 Derby Elite Racing. All rights reserved. Professional Racing Authority.
+                </p>
+</div>
+</section>
+</main>
+</body></html>

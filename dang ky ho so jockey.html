@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đăng ký Jockey | Derby Elite</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#735c00",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "inverse-surface": "#303030",
+                      "on-secondary-fixed": "#241a00",
+                      "on-surface-variant": "#404942",
+                      "on-secondary-container": "#745c00",
+                      "inverse-on-surface": "#f3f0f0",
+                      "on-secondary-fixed-variant": "#574500",
+                      "surface-container": "#f0eded",
+                      "tertiary-container": "#373939",
+                      "secondary-container": "#fed65b",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-tint": "#316948",
+                      "primary-fixed-dim": "#98d4ac",
+                      "on-tertiary-container": "#a1a2a2",
+                      "on-primary-fixed-variant": "#165132",
+                      "secondary-fixed-dim": "#e9c349",
+                      "on-surface": "#1b1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#98d4ac",
+                      "background": "#fbf9f8",
+                      "surface-container-highest": "#e4e2e1",
+                      "surface": "#fbf9f8",
+                      "secondary-fixed": "#ffe088",
+                      "on-primary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "tertiary": "#212424",
+                      "outline": "#717971",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#dcd9d9",
+                      "primary": "#002a15",
+                      "on-background": "#1b1c1c",
+                      "surface-container-high": "#eae8e7",
+                      "primary-fixed": "#b4f0c7",
+                      "outline-variant": "#c0c9c0",
+                      "primary-container": "#004225",
+                      "on-primary-container": "#75af89",
+                      "surface-bright": "#fbf9f8",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "surface-variant": "#e4e2e1",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#002110",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#e2e2e2",
+                      "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "stack-lg": "24px",
+                      "margin-mobile": "16px",
+                      "stack-md": "12px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "stack-sm": "4px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "body-md": ["Hanken Grotesk"],
+                      "headline-lg-mobile": ["Domine"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "label-caps": ["Hanken Grotesk"],
+                      "headline-lg": ["Domine"],
+                      "data-tabular": ["Hanken Grotesk"],
+                      "headline-md": ["Domine"],
+                      "display-lg": ["Domine"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-image-overlay {
+            background: linear-gradient(to right, rgba(0, 42, 21, 0.8) 0%, rgba(0, 42, 21, 0.2) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<main class="min-h-screen flex flex-col md:flex-row w-full">
+<!-- Left Side: Atmospheric Image -->
+<div class="hidden md:flex md:w-[45%] lg:w-1/2 relative bg-primary overflow-hidden items-center justify-center">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A cinematic, high-contrast action photography shot of a professional jockey holding the reins of a thoroughbred racehorse in the early morning light. The scene is bathed in warm, premium light-mode lighting, highlighting the intricate details of the leather tack and the prestigious atmosphere of the track. The color palette features rich earthy tones contrasting with vibrant racing silks, adhering to an authoritative, high-octane 'Equine Prestige' aesthetic. Subtle vignetting frames the composition to evoke an editorial, luxury experience." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFNdbwkAoctHc3ByjFeRSnlbQRnfrYvwskO-qSUuKnoQUHJWQZWqP7DWmVGCbKh1qEW6IaLJfEjLLCdoJ7Y70QBlyWyEtCF_lr62ewA4Zjf9FJq4fZtVzSGHQgA9rC8KtJdkk5c94Lb-nHisGko2A2DtX0m6DzhO_NVwJgst2KZs0aY1AejW3KkfvMRbibqoX-AYvIWXEPyAGshJqehq0fb_yHxQZbJby8VWWpNBJuoBsOIB1qfqeGGmwaMdzaWBwfTusgX4EA1NRU');">
+</div>
+<div class="absolute inset-0 bg-image-overlay mix-blend-multiply"></div>
+<!-- Branding overlay -->
+<div class="relative z-10 p-margin-desktop text-surface">
+<span class="font-display-lg text-display-lg text-secondary-container block mb-stack-md">DERBY ELITE</span>
+<p class="font-body-lg text-body-lg text-surface-container-low max-w-md border-l-2 border-secondary-container pl-stack-md">
+                    Gia nhập nền tảng quản lý đua ngựa uy tín nhất. Nơi vinh danh kỹ năng, tốc độ và sự chuyên nghiệp của những nài ngựa hàng đầu.
+                </p>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="w-full md:w-[55%] lg:w-1/2 flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop bg-surface relative overflow-y-auto">
+<div class="w-full max-w-lg flex flex-col gap-stack-lg py-stack-lg">
+<!-- Mobile Logo/Header -->
+<div class="md:hidden flex flex-col items-center mb-stack-md">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold">DERBY ELITE</span>
+</div>
+<!-- Form Header -->
+<div class="text-left mb-stack-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-stack-sm">Đăng ký Jockey</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Vui lòng điền thông tin chi tiết để hoàn thiện hồ sơ chuyên nghiệp của bạn.</p>
+</div>
+<form class="flex flex-col gap-stack-lg w-full">
+<!-- Section: Personal Information -->
+<div class="bg-surface-container-lowest p-stack-lg border border-outline-variant rounded shadow-sm">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span>
+                            Thông tin cá nhân
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="md:col-span-2">
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase" for="fullName">Họ và tên</label>
+<input class="w-full bg-surface-container-lowest border border-outline rounded text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="fullName" placeholder="Nhập họ và tên đầy đủ" type="text"/>
+</div>
+<div>
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase" for="dob">Ngày sinh</label>
+<input class="w-full bg-surface-container-lowest border border-outline rounded text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="dob" type="date"/>
+</div>
+<div class="flex gap-stack-sm">
+<div class="w-1/2">
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase" for="weight">Cân nặng (kg)</label>
+<input class="w-full bg-surface-container-lowest border border-outline rounded text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="weight" placeholder="VD: 54" type="number"/>
+</div>
+<div class="w-1/2">
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase" for="height">Chiều cao (cm)</label>
+<input class="w-full bg-surface-container-lowest border border-outline rounded text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="height" placeholder="VD: 160" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Career Experience -->
+<div class="bg-surface-container-lowest p-stack-lg border border-outline-variant rounded shadow-sm">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                            Kinh nghiệm sự nghiệp
+                        </h2>
+<div class="grid grid-cols-1 gap-stack-md">
+<div>
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase" for="experience">Số năm kinh nghiệm</label>
+<select class="w-full bg-surface-container-lowest border border-outline rounded text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none" id="experience">
+<option value="">Chọn số năm</option>
+<option value="0-2">Dưới 2 năm</option>
+<option value="3-5">3 - 5 năm</option>
+<option value="6-10">6 - 10 năm</option>
+<option value="10+">Trên 10 năm</option>
+</select>
+</div>
+<div>
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase" for="stables">Chuồng đua trước đây (Nếu có)</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline rounded text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="stables" placeholder="Liệt kê các chuồng đua bạn đã từng hợp tác..." rows="3"></textarea>
+</div>
+</div>
+</div>
+<!-- Section: Professional Credentials -->
+<div class="bg-surface-container-lowest p-stack-lg border border-outline-variant rounded shadow-sm">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            Chứng chỉ nghề nghiệp
+                        </h2>
+<div class="grid grid-cols-1 gap-stack-md">
+<div>
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase" for="license">Số giấy phép Nài ngựa</label>
+<input class="w-full bg-surface-container-lowest border border-outline rounded text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="license" placeholder="Nhập mã số giấy phép" type="text"/>
+</div>
+<div>
+<label class="block mb-2 font-label-caps text-label-caps text-on-surface-variant uppercase">Tải lên chứng chỉ / Giấy phép</label>
+<div class="border-2 border-dashed border-outline-variant rounded p-stack-lg text-center hover:border-primary bg-surface transition-colors cursor-pointer group flex flex-col items-center justify-center gap-2">
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-4xl transition-colors">cloud_upload</span>
+<p class="font-data-tabular text-data-tabular text-on-surface">Kéo thả tệp vào đây hoặc <span class="text-primary underline">chọn tệp</span></p>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">Hỗ trợ định dạng PDF, JPG, PNG (Tối đa 5MB)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Submit Action -->
+<div class="mt-stack-sm">
+<button class="w-full bg-primary text-on-primary font-data-tabular text-data-tabular py-4 rounded hover:bg-primary-container transition-colors shadow-sm flex justify-center items-center gap-2" type="submit">
+                            Hoàn tất đăng ký
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<p class="text-center font-label-caps text-label-caps text-on-surface-variant mt-stack-md">
+                            Bằng việc đăng ký, bạn đồng ý với <a class="text-primary underline" href="#">Điều khoản dịch vụ</a> và <a class="text-primary underline" href="#">Chính sách bảo mật</a> của chúng tôi.
+                        </p>
+</div>
+</form>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffe088",
+                    "secondary-fixed-dim": "#e9c349",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary-container": "#004225",
+                    "surface-container-low": "#f6f3f2",
+                    "on-background": "#1b1c1c",
+                    "surface-container": "#f0eded",
+                    "on-surface": "#1b1c1c",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#373939",
+                    "outline-variant": "#c0c9c0",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#002a15",
+                    "on-primary-fixed-variant": "#165132",
+                    "surface-container-high": "#eae8e7",
+                    "secondary": "#735c00",
+                    "on-secondary-container": "#745c00",
+                    "on-secondary-fixed-variant": "#574500",
+                    "tertiary": "#212424",
+                    "secondary-container": "#fed65b",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "inverse-surface": "#303030",
+                    "surface": "#fbf9f8",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-primary-container": "#75af89",
+                    "inverse-primary": "#98d4ac",
+                    "on-surface-variant": "#404942",
+                    "surface-tint": "#316948",
+                    "primary-fixed": "#b4f0c7",
+                    "surface-bright": "#fbf9f8",
+                    "on-primary-fixed": "#002110",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "primary-fixed-dim": "#98d4ac",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f3f0f0",
+                    "surface-dim": "#dcd9d9",
+                    "on-tertiary-container": "#a1a2a2",
+                    "on-secondary-fixed": "#241a00",
+                    "background": "#fbf9f8",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#717971"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "stack-sm": "4px",
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg": ["Domine"],
+                    "data-tabular": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Domine"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Domine"],
+                    "display-lg": ["Domine"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .odds-gradient {
+            background: linear-gradient(90deg, #004225 0%, #316948 100%);
+        }
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-primary dark:bg-primary border-b-2 border-secondary-container/20 shadow-md h-16">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-full">
+<div class="font-headline-md text-headline-md font-bold text-secondary-container">DERBY ELITE</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Live Races</a>
+<a class="font-label-caps text-label-caps text-secondary-container border-b-2 border-secondary-container pb-1" href="#">Schedule</a>
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Results</a>
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Horses</a>
+<a class="font-label-caps text-label-caps text-surface dark:text-surface-container-low hover:text-secondary-container transition-colors duration-200" href="#">Jockeys</a>
+</div>
+<div class="flex gap-stack-lg items-center">
+<button class="font-label-caps text-label-caps text-surface-container-low hover:text-secondary-container transition-colors">Login</button>
+<button class="bg-secondary-container text-on-secondary-fixed font-label-caps text-label-caps px-stack-lg py-2 rounded-lg active:opacity-80">Place Bet</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Race Header Section -->
+<header class="bg-surface-container-low rounded-xl p-stack-lg border border-outline-variant mb-stack-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 p-stack-lg flex gap-stack-md">
+<span class="bg-error text-on-error px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 live-pulse">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">sensors</span> LIVE
+                </span>
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full font-label-caps text-label-caps">Race 4 / 12</span>
+</div>
+<div class="flex flex-col gap-2">
+<h1 class="font-display-lg text-display-lg text-primary uppercase">The Royal Ascot Championship</h1>
+<div class="flex flex-wrap gap-gutter mt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">payments</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">TOTAL PURSE</p>
+<p class="font-data-tabular text-data-tabular font-bold">$2,500,000</p>
+</div>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant pl-gutter">
+<span class="material-symbols-outlined text-on-surface-variant">thermostat</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">WEATHER</p>
+<p class="font-data-tabular text-data-tabular font-bold">24°C Sunny</p>
+</div>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant pl-gutter">
+<span class="material-symbols-outlined text-on-surface-variant">grass</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">TRACK CONDITION</p>
+<p class="font-data-tabular text-data-tabular font-bold">Firm (Turf)</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content: Horse Entry Table -->
+<section class="lg:col-span-8 flex flex-col gap-stack-lg">
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="bg-primary-container p-4 text-on-primary-container font-label-caps text-label-caps">
+                        ENTRY LIST &amp; ODDS
+                    </div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant">
+<th class="p-4 font-label-caps text-label-caps">NO.</th>
+<th class="p-4 font-label-caps text-label-caps">HORSE</th>
+<th class="p-4 font-label-caps text-label-caps">JOCKEY / TRAINER</th>
+<th class="p-4 font-label-caps text-label-caps">WEIGHT</th>
+<th class="p-4 font-label-caps text-label-caps">ODDS TREND</th>
+<th class="p-4 font-label-caps text-label-caps text-right">CURRENT</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-4 font-data-tabular text-headline-md text-primary">01</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Thunder Spirit</span>
+<span class="text-on-surface-variant text-[12px]">Last 5: 1-2-1-4-1</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-data-tabular text-on-surface">L. Dettori</span>
+<span class="text-on-surface-variant text-[12px]">T: Charlie Appleby</span>
+</div>
+</td>
+<td class="p-4 font-data-tabular">57.5 kg</td>
+<td class="p-4">
+<div class="h-8 w-24 bg-surface-container-highest rounded relative flex items-end gap-1 px-1">
+<div class="w-1/4 bg-primary-container h-1/2"></div>
+<div class="w-1/4 bg-primary-container h-3/4"></div>
+<div class="w-1/4 bg-primary-container h-2/3"></div>
+<div class="w-1/4 bg-secondary h-full"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="bg-secondary-container text-on-secondary-fixed font-data-tabular text-headline-md px-4 py-2 rounded-lg hover:shadow-lg transition-all min-w-[80px]">2.50</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-4 font-data-tabular text-headline-md text-primary">02</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Golden Scepter</span>
+<span class="text-on-surface-variant text-[12px]">Last 5: 2-3-2-1-5</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-data-tabular text-on-surface">R. Moore</span>
+<span class="text-on-surface-variant text-[12px]">T: Aidan O'Brien</span>
+</div>
+</td>
+<td class="p-4 font-data-tabular">58.0 kg</td>
+<td class="p-4">
+<div class="h-8 w-24 bg-surface-container-highest rounded relative flex items-end gap-1 px-1">
+<div class="w-1/4 bg-primary-container h-full"></div>
+<div class="w-1/4 bg-primary-container h-2/3"></div>
+<div class="w-1/4 bg-primary-container h-1/2"></div>
+<div class="w-1/4 bg-secondary h-1/3"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="bg-secondary-container text-on-secondary-fixed font-data-tabular text-headline-md px-4 py-2 rounded-lg hover:shadow-lg transition-all min-w-[80px]">4.75</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-4 font-data-tabular text-headline-md text-primary">03</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Emerald Baron</span>
+<span class="text-on-surface-variant text-[12px]">Last 5: 4-5-1-2-1</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-data-tabular text-on-surface">W. Buick</span>
+<span class="text-on-surface-variant text-[12px]">T: John Gosden</span>
+</div>
+</td>
+<td class="p-4 font-data-tabular">56.5 kg</td>
+<td class="p-4">
+<div class="h-8 w-24 bg-surface-container-highest rounded relative flex items-end gap-1 px-1">
+<div class="w-1/4 bg-primary-container h-1/3"></div>
+<div class="w-1/4 bg-primary-container h-2/3"></div>
+<div class="w-1/4 bg-primary-container h-1/2"></div>
+<div class="w-1/4 bg-secondary h-3/4"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="bg-secondary-container text-on-secondary-fixed font-data-tabular text-headline-md px-4 py-2 rounded-lg hover:shadow-lg transition-all min-w-[80px]">12.0</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Sidebar: Commentary & Betting -->
+<aside class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Live Commentary -->
+<div class="bg-tertiary text-surface rounded-xl border border-tertiary-container shadow-xl overflow-hidden flex flex-col h-[400px]">
+<div class="bg-tertiary-container p-4 flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-secondary-container">LIVE COMMENTARY</span>
+<span class="text-[10px] uppercase font-bold text-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 bg-error rounded-full block live-pulse"></span> SYNCED
+                        </span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4 font-body-md text-body-md text-surface-dim" id="commentary-feed">
+<div class="flex gap-3">
+<span class="text-secondary-fixed font-bold shrink-0">14:05</span>
+<p>Horses are entering the parade ring. Thunder Spirit looking exceptionally calm and well-defined today.</p>
+</div>
+<div class="flex gap-3">
+<span class="text-secondary-fixed font-bold shrink-0">14:00</span>
+<p>Track reported as Good to Firm. Wind speed 12mph from the West.</p>
+</div>
+<div class="flex gap-3">
+<span class="text-secondary-fixed font-bold shrink-0">13:55</span>
+<p>Big move on Golden Scepter in the betting rings. Odds shortening from 5.50 to 4.75.</p>
+</div>
+</div>
+<div class="p-4 bg-tertiary-container/30 border-t border-tertiary-container">
+<div class="flex items-center gap-2">
+<div class="h-1 flex-1 bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-secondary-container w-2/3"></div>
+</div>
+<span class="font-label-caps text-[10px]">TIME TO POST: 15:00</span>
+</div>
+</div>
+</div>
+<!-- Betting Interface -->
+<div class="bg-surface rounded-xl border-2 border-primary-container shadow-lg overflow-hidden">
+<div class="bg-primary-container p-4 text-on-primary-container font-label-caps text-label-caps flex justify-between items-center">
+                        QUICK BET SLIP
+                        <span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div class="p-stack-lg flex flex-col gap-stack-md">
+<div class="bg-surface-container-low p-3 rounded border border-outline-variant flex justify-between items-center">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">SELECTION</p>
+<p class="font-bold text-primary">Thunder Spirit (01)</p>
+</div>
+<span class="font-data-tabular text-headline-md">2.50</span>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">STAKE AMOUNT ($)</label>
+<div class="flex gap-2">
+<button class="flex-1 border border-outline py-2 font-data-tabular hover:bg-primary hover:text-white transition-colors">10</button>
+<button class="flex-1 border border-outline py-2 font-data-tabular hover:bg-primary hover:text-white transition-colors">50</button>
+<button class="flex-1 border border-outline py-2 font-data-tabular hover:bg-primary hover:text-white transition-colors">100</button>
+<button class="flex-1 border border-outline py-2 font-data-tabular hover:bg-primary hover:text-white transition-colors">MAX</button>
+</div>
+<input class="w-full mt-2 border border-outline rounded p-3 font-data-tabular text-headline-md focus:ring-primary focus:border-primary" placeholder="Enter amount..." type="number"/>
+</div>
+<div class="border-t border-outline-variant pt-stack-md mt-2">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-caps text-on-surface-variant">ESTIMATED RETURN</span>
+<span class="font-data-tabular text-headline-md text-primary">$250.00</span>
+</div>
+<button class="w-full bg-secondary-container text-on-secondary-fixed py-4 rounded font-label-caps text-label-caps text-[16px] font-bold shadow-md hover:translate-y-[-2px] active:translate-y-0 transition-all">
+                                CONFIRM PLACE BET
+                            </button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Featured Visual Section (The Track) -->
+<section class="mt-stack-lg">
+<div class="relative rounded-xl h-[300px] overflow-hidden group">
+<img class="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700" data-alt="A cinematic low-angle shot of professional race horses thundering down a lush green turf track during a sunny afternoon at a premium racing event. The lighting is high-contrast with long shadows, capturing the intensity and dust kicked up by the hooves. The aesthetic is prestigious and high-octane, featuring a deep racing green and trophy gold color palette with a clean, corporate atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYTdByn5FBjWLQ4kC7V21Z7hYN7jjK5WVD_jPluf4fY36lQxTRo0RX2-lgqtXHhh5al5lEXi3xdQWLM0wtT6JMYOdH-l8aZiZVooH6lRRRcYS1PPPjUsPr6XdmshARSFwE9TfySAHgtxEjR2Jj8GcLboyN7n0sW52ezjmELmg79zGphZrZuuEBxUcAucVFo3logKG7s3zbPL4M3acW0DJgsjrAbpr3ons7B0yaKOkMzG-i3cRgHsrsmx19nVRh7NCzKK3_Dp2Riiyb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-margin-desktop">
+<h2 class="text-white font-display-lg text-headline-lg uppercase">Experience Elite Racing</h2>
+<p class="text-on-primary-container max-w-xl font-body-lg">Every second counts. Every decision matters. Join the most prestigious racing circle in the world.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-tertiary dark:bg-on-background flex flex-col items-center gap-stack-md px-margin-desktop">
+<div class="font-headline-md text-headline-md text-secondary-container">DERBY ELITE</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="text-surface-variant font-body-md hover:text-secondary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="text-surface-variant font-body-md hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="text-surface-variant font-body-md hover:text-secondary-fixed transition-colors" href="#">Responsible Gaming</a>
+<a class="text-surface-variant font-body-md hover:text-secondary-fixed transition-colors" href="#">Contact Us</a>
+<a class="text-surface-variant font-body-md hover:text-secondary-fixed transition-colors" href="#">About Elite</a>
+</div>
+<div class="text-surface dark:text-surface-dim font-body-md mt-stack-md opacity-60">
+            © 2024 Derby Elite Racing. All rights reserved. Professional Racing Authority.
+        </div>
+</footer>
+<script>
+        // Simple Micro-interaction for commentary updates
+        const commentaryFeed = document.getElementById('commentary-feed');
+        const updates = [
+            "Heavy rain starting at the back stretch. Track condition may shift to Soft.",
+            "Jockey L. Dettori adjusting the girth on Thunder Spirit. Looks focused.",
+            "Odds for Emerald Baron continue to drift. Now at 14.50.",
+            "Final call for bets. Gates open in 3 minutes!"
+        ];
+        let updateIndex = 0;
+
+        setInterval(() => {
+            const time = new Date();
+            const timeStr = `${time.getHours()}:${time.getMinutes() < 10 ? '0' : ''}${time.getMinutes()}`;
+            const div = document.createElement('div');
+            div.className = 'flex gap-3 opacity-0 translate-y-2 transition-all duration-500';
+            div.innerHTML = `<span class="text-secondary-fixed font-bold shrink-0">${timeStr}</span><p>${updates[updateIndex]}</p>`;
+            commentaryFeed.prepend(div);
+            
+            setTimeout(() => {
+                div.classList.remove('opacity-0', 'translate-y-2');
+            }, 100);
+
+            updateIndex = (updateIndex + 1) % updates.length;
+        }, 8000);
+    </script>
+</body></html>
