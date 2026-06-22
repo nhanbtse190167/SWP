@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Horse Racing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-light-green {
+            background-color: #f0f7f2;
+        }
+        .table-scrollbar::-webkit-scrollbar {
+            height: 8px;
+        }
+        .table-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .clickable-card:hover {
+            transform: translateY(-2px);
+            border-color: #15803d; /* green-700 */
+        }
+    </style>
+</head>
+<body class="bg-white font-sans text-gray-800 min-h-screen">
+
+    <nav class="flex items-center justify-between px-6 py-3 border-b-[3px] border-green-700 bg-white">
+        <div class="flex items-center gap-2 cursor-pointer">
+            <span class="text-2xl drop-shadow-md">🐎</span>
+            <span class="text-xl font-extrabold text-green-800">Horse Racing</span>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-700">
+            <a href="#" class="hover:text-green-700 transition">Trang chủ</a>
+            <a href="#" class="bg-green-700 text-white px-4 py-2 rounded-md shadow-sm">Dashboard</a>
+            <a href="#" class="hover:text-green-700 transition">Chủ Ngựa</a>
+            <a href="#" class="hover:text-green-700 transition">Jockey</a>
+            <a href="#" class="hover:text-green-700 transition">Lịch Đua</a>
+            <a href="#" class="hover:text-green-700 transition">Giải đấu</a>
+            <a href="#" class="hover:text-green-700 transition">Xếp hạng</a>
+            <a href="#" class="hover:text-green-700 transition">Ví</a>
+            <a href="#" class="hover:text-green-700 transition">Dự Đoán</a>
+            <a href="#" class="hover:text-green-700 transition">Thông báo</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button class="border border-green-700 text-green-700 px-5 py-1.5 rounded-md text-sm font-semibold hover:bg-green-50 transition">Đăng nhập</button>
+            <button class="bg-green-700 text-white px-5 py-1.5 rounded-md text-sm font-semibold hover:bg-green-800 shadow-sm transition">Đăng ký</button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-green-800 flex items-center gap-3">
+                    <span class="text-3xl">📊</span> Dashboard
+                </h1>
+                <p class="text-gray-500 mt-1">Tổng quan hệ thống quản lý đua ngựa</p>
+            </div>
+            <div class="text-gray-500 text-sm flex items-center gap-1 mt-4 md:mt-0">
+                <span class="text-gray-400">🕒</span> Cập nhật: 17:13:42 22/6/2026
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+            <div id="card-total-horses" class="border border-green-300 rounded-xl p-6 flex flex-col items-center justify-center bg-green-50 shadow-sm transition cursor-pointer clickable-card">
+                <span class="text-4xl drop-shadow-sm">🐎</span>
+                <span class="text-3xl font-bold text-green-700 mt-3" id="total-horses-count">5</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Tổng ngựa</span>
+            </div>
+            <div id="card-total-jockeys" class="border border-green-300 rounded-xl p-6 flex flex-col items-center justify-center bg-green-50 shadow-sm transition cursor-pointer clickable-card">
+                <span class="text-4xl drop-shadow-sm">🏇</span>
+                <span class="text-3xl font-bold text-green-700 mt-3" id="total-jockeys-count">3</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Tổng kỵ sĩ</span>
+            </div>
+            <div id="card-total-referees" class="border border-green-300 rounded-xl p-6 flex flex-col items-center justify-center bg-green-50 shadow-sm transition cursor-pointer clickable-card">
+                <span class="text-4xl drop-shadow-sm">👨‍⚖️</span>
+                <span class="text-3xl font-bold text-green-700 mt-3" id="total-referees-count">4</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Tổng trọng tài</span>
+            </div>
+            <div class="border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center bg-white shadow-sm hover:shadow-md transition">
+                <span class="text-4xl drop-shadow-sm">🏆</span>
+                <span class="text-3xl font-bold text-green-700 mt-3">2</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Lịch đua</span>
+            </div>
+            <div class="border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center bg-white shadow-sm hover:shadow-md transition">
+                <span class="text-4xl drop-shadow-sm">🎯</span>
+                <span class="text-3xl font-bold text-green-700 mt-3">1</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Giải đấu</span>
+            </div>
+            <div class="border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center bg-white shadow-sm hover:shadow-md transition">
+                <span class="text-4xl drop-shadow-sm">👥</span>
+                <span class="text-3xl font-bold text-green-700 mt-3">10</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Người dùng</span>
+            </div>
+            <div class="border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center bg-white shadow-sm hover:shadow-md transition">
+                <span class="text-4xl drop-shadow-sm">📋</span>
+                <span class="text-3xl font-bold text-green-700 mt-3" id="pending-count">2</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Chờ duyệt</span>
+            </div>
+            <div class="border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center bg-white shadow-sm hover:shadow-md transition">
+                <span class="text-4xl drop-shadow-sm">💰</span>
+                <span class="text-3xl font-bold text-green-700 mt-3">15</span>
+                <span class="text-sm text-gray-500 mt-1 border-b border-gray-300 pb-0.5">Tổng cược</span>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-light-green border border-green-200 rounded-xl p-6">
+            <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+                <span class="text-orange-500">⚡</span> Truy cập nhanh
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <button id="toggle-horse-btn" class="bg-white border border-green-700 text-green-800 px-4 py-2.5 rounded-md font-semibold hover:bg-green-50 flex items-center justify-center gap-2 shadow-sm transition">
+                    <span>🐎</span> Thêm ngựa
+                </button>
+                <button id="toggle-jockey-btn" class="bg-white border border-green-700 text-green-800 px-4 py-2.5 rounded-md font-semibold hover:bg-green-50 flex items-center justify-center gap-2 shadow-sm transition">
+                    <span>🏇</span> Thêm kỵ sĩ
+                </button>
+                <button id="toggle-referee-btn" class="bg-white border border-purple-600 text-purple-700 px-4 py-2.5 rounded-md font-semibold hover:bg-purple-50 flex items-center justify-center gap-2 shadow-sm transition">
+                    <span>👨‍⚖️</span> Phân công trọng tài
+                </button>
+                <button class="bg-white border border-blue-500 text-blue-600 px-4 py-2.5 rounded-md font-semibold hover:bg-blue-50 flex items-center justify-center gap-2 shadow-sm transition">
+                    <span>🎯</span> Tạo giải đấu
+                </button>
+            </div>
+        </div>
+
+        <div id="referees-section" class="mt-6 border border-gray-200 rounded-xl overflow-hidden hidden shadow-sm section-panel">
+            <div class="bg-purple-700 text-white px-6 py-3 font-bold text-sm flex justify-between items-center">
+                <span>👨‍⚖️ DANH SÁCH TRỌNG TÀI & PHÂN CÔNG</span>
+                <button class="text-white hover:text-gray-200 close-btn">✕ Đóng</button>
+            </div>
+            <div class="overflow-x-auto table-scrollbar">
+                <table class="w-full text-sm text-left whitespace-nowrap">
+                    <thead class="bg-purple-50 text-purple-800 font-bold uppercase text-xs">
+                        <tr>
+                            <th class="px-6 py-4 border-b border-purple-100">ID</th>
+                            <th class="px-6 py-4 border-b border-purple-100">Tên trọng tài</th>
+                            <th class="px-6 py-4 border-b border-purple-100 text-center">Kinh nghiệm</th>
+                            <th class="px-6 py-4 border-b border-purple-100">Trạng thái hiện tại</th>
+                            <th class="px-6 py-4 border-b border-purple-100 text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="referees-tbody">
+                        <tr class="bg-white border-b hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-800">REF-001</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Phạm Văn Đồng</td>
+                            <td class="px-6 py-4 text-center text-gray-600">8 năm</td>
+                            <td class="px-6 py-4 referee-status">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold w-max block border border-green-200">
+                                    Sẵn sàng phân công
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center action-cell">
+                                <button class="bg-purple-50 border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="assignReferee(this)" title="Phân công">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg> Phân công
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-800">REF-002</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Hoàng Thị Thảo</td>
+                            <td class="px-6 py-4 text-center text-gray-600">5 năm</td>
+                            <td class="px-6 py-4 referee-status">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold w-max block border border-purple-200">
+                                    Đang giám sát: Cúp Mùa Xuân 2026
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center action-cell">
+                                <span class="text-gray-400 text-xs italic font-medium">Đã phân công</span>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-800">REF-003</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Bùi Minh Quân</td>
+                            <td class="px-6 py-4 text-center text-gray-600">10 năm</td>
+                            <td class="px-6 py-4 referee-status">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold w-max block border border-green-200">
+                                    Sẵn sàng phân công
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center action-cell">
+                                <button class="bg-purple-50 border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="assignReferee(this)" title="Phân công">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg> Phân công
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-800">REF-004</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Lê Đức Anh</td>
+                            <td class="px-6 py-4 text-center text-gray-600">3 năm</td>
+                            <td class="px-6 py-4 referee-status">
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold w-max block border border-gray-200">
+                                    Đang nghỉ phép
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center action-cell">
+                                <span class="text-gray-400 text-xs italic font-medium">Không khả dụng</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="active-horses-section" class="mt-6 border border-gray-200 rounded-xl overflow-hidden hidden shadow-sm section-panel">
+            <div class="bg-blue-700 text-white px-6 py-3 font-bold text-sm flex justify-between items-center">
+                <span>📋 DANH SÁCH NGỰA ĐANG HOẠT ĐỘNG</span>
+                <button class="text-white hover:text-gray-200 close-btn">✕ Đóng</button>
+            </div>
+            <div class="overflow-x-auto table-scrollbar">
+                <table class="w-full text-sm text-left whitespace-nowrap">
+                    <thead class="bg-blue-50 text-blue-800 font-bold uppercase text-xs">
+                        <tr>
+                            <th class="px-6 py-4 border-b border-blue-100">ID</th>
+                            <th class="px-6 py-4 border-b border-blue-100">Tên ngựa</th>
+                            <th class="px-6 py-4 border-b border-blue-100">Chỉ số cơ bản</th>
+                            <th class="px-6 py-4 border-b border-blue-100">Trạng thái</th>
+                            <th class="px-6 py-4 border-b border-blue-100 text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="active-horses-tbody">
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-horse-row">
+                            <td class="px-6 py-4 font-bold text-gray-800">LT-9982</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Lightning Thunder</td>
+                            <td class="px-6 py-4 text-gray-600">
+                                <div>Giống: Thoroughbred</div>
+                                <div>Tuổi: 4</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold w-max block">
+                                    Ready for competition
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveHorse(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-horse-row">
+                            <td class="px-6 py-4 font-bold text-gray-800">SS-1024</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Silver Shadow</td>
+                            <td class="px-6 py-4 text-gray-600">
+                                <div>Giống: Arabian</div>
+                                <div>Tuổi: 5</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold w-max block">
+                                    Ready for competition
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveHorse(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-horse-row">
+                            <td class="px-6 py-4 font-bold text-gray-800">BF-3310</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Black Fury</td>
+                            <td class="px-6 py-4 text-gray-600">
+                                <div>Giống: Appaloosa</div>
+                                <div>Tuổi: 3</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold w-max block">
+                                    Ready for competition
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveHorse(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-horse-row">
+                            <td class="px-6 py-4 font-bold text-gray-800">MR-5050</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Midnight Runner</td>
+                            <td class="px-6 py-4 text-gray-600">
+                                <div>Giống: Mustang</div>
+                                <div>Tuổi: 6</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold w-max block border border-gray-200">
+                                    Resting / Injured
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveHorse(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-horse-row">
+                            <td class="px-6 py-4 font-bold text-gray-800">DW-7721</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Desert Wind</td>
+                            <td class="px-6 py-4 text-gray-600">
+                                <div>Giống: Andalusian</div>
+                                <div>Tuổi: 4</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold w-max block">
+                                    Ready for competition
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveHorse(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="active-jockeys-section" class="mt-6 border border-gray-200 rounded-xl overflow-hidden hidden shadow-sm section-panel">
+            <div class="bg-blue-700 text-white px-6 py-3 font-bold text-sm flex justify-between items-center">
+                <span>📋 DANH SÁCH KỴ SĨ ĐANG HOẠT ĐỘNG</span>
+                <button class="text-white hover:text-gray-200 close-btn">✕ Đóng</button>
+            </div>
+            <div class="overflow-x-auto table-scrollbar">
+                <table class="w-full text-sm text-left whitespace-nowrap">
+                    <thead class="bg-blue-50 text-blue-800 font-bold uppercase text-xs">
+                        <tr>
+                            <th class="px-6 py-4 border-b border-blue-100">Tên kỵ sĩ</th>
+                            <th class="px-6 py-4 border-b border-blue-100 text-center">Cân nặng</th>
+                            <th class="px-6 py-4 border-b border-blue-100 text-center">Kinh nghiệm</th>
+                            <th class="px-6 py-4 border-b border-blue-100 text-center">Hạng</th>
+                            <th class="px-6 py-4 border-b border-blue-100 text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="active-jockeys-tbody">
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-jockey-row">
+                            <td class="px-6 py-4 font-bold text-gray-900">Nguyễn Văn A</td>
+                            <td class="px-6 py-4 text-center text-gray-600">60 kg</td>
+                            <td class="px-6 py-4 text-center font-semibold text-blue-700">5 năm</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold">HẠNG A</span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveJockey(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-jockey-row">
+                            <td class="px-6 py-4 font-bold text-gray-900">Trần Thị B</td>
+                            <td class="px-6 py-4 text-center text-gray-600">52 kg</td>
+                            <td class="px-6 py-4 text-center font-semibold text-blue-700">2 năm</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold">HẠNG C</span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveJockey(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50 transition active-jockey-row">
+                            <td class="px-6 py-4 font-bold text-gray-900">Lê Hoàng C</td>
+                            <td class="px-6 py-4 text-center text-gray-600">58 kg</td>
+                            <td class="px-6 py-4 text-center font-semibold text-blue-700">7 năm</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold">HẠNG B</span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveJockey(this)" title="Xóa khỏi hệ thống">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="horse-approval-section" class="mt-6 border border-gray-200 rounded-xl overflow-hidden hidden shadow-sm section-panel">
+            <div class="bg-teal-700 text-white px-6 py-3 font-bold text-sm flex justify-between items-center">
+                <span>⏳ DANH SÁCH NGỰA CHỜ DUYỆT</span>
+                <button class="text-white hover:text-gray-200 close-btn">✕ Đóng</button>
+            </div>
+            <div class="overflow-x-auto table-scrollbar">
+                <table class="w-full text-sm text-left whitespace-nowrap">
+                    <thead class="bg-light-green text-teal-800 font-bold uppercase text-xs">
+                        <tr>
+                            <th class="px-6 py-4 border-b border-green-200">ID dự kiến</th>
+                            <th class="px-6 py-4 border-b border-green-200">Tên ngựa</th>
+                            <th class="px-6 py-4 border-b border-green-200">Chỉ số cơ bản</th>
+                            <th class="px-6 py-4 border-b border-green-200">Trạng thái</th>
+                            <th class="px-6 py-4 border-b border-green-200 text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white hover:bg-gray-50 transition pending-horse-row">
+                            <td class="px-6 py-4 text-gray-400 italic">Chưa cấp mã</td>
+                            <td class="px-6 py-4 font-bold text-gray-900 horse-name">Golden Star</td>
+                            <td class="px-6 py-4 text-gray-600 horse-stats">
+                                <div>Giống: Quarter Horse</div>
+                                <div>Tuổi: 3</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 w-max">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    Chờ đối chiếu
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 action-cell">
+                                <div class="flex gap-2 justify-center items-center">
+                                    <button class="bg-green-50 border border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs flex items-center gap-1 shadow-sm" onclick="approveHorse(this)" title="Duyệt">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Duyệt
+                                    </button>
+                                    <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs flex items-center gap-1 shadow-sm" onclick="removePending(this)" title="Loại">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="jockey-approval-section" class="mt-6 border border-gray-200 rounded-xl overflow-hidden hidden shadow-sm section-panel">
+            <div class="bg-teal-700 text-white px-6 py-3 font-bold text-sm flex justify-between items-center">
+                <span>⏳ DANH SÁCH KỴ SĨ CHỜ DUYỆT</span>
+                <button class="text-white hover:text-gray-200 close-btn">✕ Đóng</button>
+            </div>
+            <div class="overflow-x-auto table-scrollbar">
+                <table class="w-full text-sm text-left whitespace-nowrap">
+                    <thead class="bg-light-green text-teal-800 font-bold uppercase text-xs">
+                        <tr>
+                            <th class="px-6 py-4 border-b border-green-200">Tên kỵ sĩ</th>
+                            <th class="px-6 py-4 border-b border-green-200 text-center">Cân nặng</th>
+                            <th class="px-6 py-4 border-b border-green-200 text-center">Kinh nghiệm</th>
+                            <th class="px-6 py-4 border-b border-green-200">Chứng chỉ</th>
+                            <th class="px-6 py-4 border-b border-green-200 text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white hover:bg-gray-50 transition pending-jockey-row">
+                            <td class="px-6 py-4 font-bold text-gray-900 jock-name">Trần Văn Minh</td>
+                            <td class="px-6 py-4 text-center text-gray-600 jock-weight">55 kg</td>
+                            <td class="px-6 py-4 text-center font-semibold text-blue-700 jock-exp">3 năm</td>
+                            <td class="px-6 py-4">
+                                <a href="#" class="text-blue-600 underline text-xs font-semibold hover:text-blue-800">Tệp đính kèm (PDF)</a>
+                            </td>
+                            <td class="px-6 py-4 action-cell">
+                                <div class="flex gap-2 justify-center items-center">
+                                    <button class="bg-green-50 border border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs flex items-center gap-1 shadow-sm" onclick="approveJockey(this)" title="Duyệt">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Duyệt
+                                    </button>
+                                    <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs flex items-center gap-1 shadow-sm" onclick="removePending(this)" title="Loại">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-6 bg-light-green border border-green-200 rounded-xl p-6 mb-10">
+            <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+                <span>📋</span> Hoạt động gần đây
+            </h2>
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-3">
+                    <span class="text-xl">🐎</span> 
+                    <span class="text-gray-600 font-medium">Ngựa "Lightning Thunder" được đăng ký mới</span>
+                </div>
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-3">
+                    <span class="text-xl">🏇</span> 
+                    <span class="text-gray-600 font-medium">Kỵ sĩ "Trần Văn Minh" vừa nộp đơn đăng ký</span>
+                </div>
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-3">
+                    <span class="text-xl">🏆</span> 
+                    <span class="text-gray-600 font-medium">Cuộc đua "Cúp mùa xuân 2026" đã được tạo</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const panels = document.querySelectorAll('.section-panel');
+
+        function hideAllPanels() {
+            panels.forEach(p => p.classList.add('hidden'));
+        }
+
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', hideAllPanels);
+        });
+
+        // ==========================================
+        // SỰ KIỆN CLICK MỞ CÁC BẢNG DANH SÁCH
+        // ==========================================
+        document.getElementById('card-total-horses').addEventListener('click', () => {
+            hideAllPanels();
+            document.getElementById('active-horses-section').classList.remove('hidden');
+        });
+
+        document.getElementById('card-total-jockeys').addEventListener('click', () => {
+            hideAllPanels();
+            document.getElementById('active-jockeys-section').classList.remove('hidden');
+        });
+
+        // Bật bảng Trọng tài khi ấn vào Thẻ Thống kê hoặc Nút Truy Cập Nhanh
+        document.getElementById('card-total-referees').addEventListener('click', () => {
+            hideAllPanels();
+            document.getElementById('referees-section').classList.remove('hidden');
+        });
+
+        document.getElementById('toggle-referee-btn').addEventListener('click', () => {
+            hideAllPanels();
+            document.getElementById('referees-section').classList.remove('hidden');
+        });
+
+        document.getElementById('toggle-horse-btn').addEventListener('click', () => {
+            hideAllPanels();
+            document.getElementById('horse-approval-section').classList.remove('hidden');
+        });
+
+        document.getElementById('toggle-jockey-btn').addEventListener('click', () => {
+            hideAllPanels();
+            document.getElementById('jockey-approval-section').classList.remove('hidden');
+        });
+
+        // ==========================================
+        // LOGIC PHÂN CÔNG TRỌNG TÀI
+        // ==========================================
+        function assignReferee(btn) {
+            const row = btn.closest('tr');
+            const raceName = prompt("Nhập tên cuộc đua muốn phân công trọng tài này giám sát (VD: Cúp Mùa Xuân 2026):", "Cúp Mùa Xuân 2026");
+            
+            if (raceName != null && raceName.trim() !== "") {
+                // Cập nhật trạng thái
+                const statusCell = row.querySelector('.referee-status');
+                statusCell.innerHTML = `
+                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold w-max block border border-purple-200">
+                        Đang giám sát: ${raceName}
+                    </span>
+                `;
+                
+                // Thay đổi Tác vụ sang Đã phân công
+                const actionCell = row.querySelector('.action-cell');
+                actionCell.innerHTML = `
+                    <span class="text-gray-400 text-xs italic font-medium">Đã phân công</span>
+                `;
+                
+                alert("Đã phân công trọng tài thành công!");
+            }
+        }
+
+        // ==========================================
+        // LOGIC XÓA VÀ DUYỆT NGỰA / KỴ SĨ 
+        // ==========================================
+        function removeActiveHorse(btn) {
+            if(confirm("Xác nhận: Loại bỏ ngựa này khỏi danh sách hoạt động của hệ thống?")) {
+                btn.closest('tr').remove();
+                const countEl = document.getElementById('total-horses-count');
+                countEl.textContent = Math.max(0, parseInt(countEl.textContent) - 1);
+            }
+        }
+
+        function removeActiveJockey(btn) {
+            if(confirm("Xác nhận: Loại bỏ kỵ sĩ này khỏi danh sách hoạt động của hệ thống?")) {
+                btn.closest('tr').remove();
+                const countEl = document.getElementById('total-jockeys-count');
+                countEl.textContent = Math.max(0, parseInt(countEl.textContent) - 1);
+            }
+        }
+
+        function removePending(btn) {
+            if(confirm("Từ chối hồ sơ này? (Dữ liệu sẽ bị xóa)")) {
+                btn.closest('tr').remove();
+                updatePendingCount();
+            }
+        }
+
+        function approveHorse(btn) {
+            const row = btn.closest('tr');
+            const newId = prompt("Cấp mã ID mới cho ngựa (VD: GS-1024):", "");
+            
+            if (newId != null && newId.trim() !== "") {
+                const name = row.querySelector('.horse-name').innerText;
+                const stats = row.querySelector('.horse-stats').innerHTML;
+
+                const activeTbody = document.getElementById('active-horses-tbody');
+                const newRow = document.createElement('tr');
+                newRow.className = "bg-green-50 border-b hover:bg-gray-50 transition active-horse-row"; 
+                newRow.innerHTML = `
+                    <td class="px-6 py-4 font-bold text-gray-800">${newId.toUpperCase()}</td>
+                    <td class="px-6 py-4 font-bold text-gray-900">${name}</td>
+                    <td class="px-6 py-4 text-gray-600">${stats}</td>
+                    <td class="px-6 py-4">
+                        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold w-max block">
+                            Ready for competition
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveHorse(this)" title="Xóa khỏi hệ thống">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                        </button>
+                    </td>
+                `;
+                activeTbody.appendChild(newRow);
+
+                const totalEl = document.getElementById('total-horses-count');
+                totalEl.textContent = parseInt(totalEl.textContent) + 1;
+
+                row.remove();
+                updatePendingCount();
+                alert("Đã duyệt thành công! Ngựa đã được đưa vào danh sách Hoạt động.");
+            }
+        }
+
+        function approveJockey(btn) {
+            const row = btn.closest('tr');
+            
+            let rankInput = null;
+            while (true) {
+                let input = prompt("Chứng chỉ hợp lệ. Vui lòng cấp HẠNG cho kỵ sĩ (Chỉ nhập A, B hoặc C):", "C");
+                if (input === null) {
+                    return; 
+                }
+                
+                input = input.trim().toUpperCase();
+                if (input === 'A' || input === 'B' || input === 'C') {
+                    rankInput = "HẠNG " + input;
+                    break;
+                } else {
+                    alert("Hạng không hợp lệ! Vui lòng chỉ nhập một chữ cái: A, B hoặc C.");
+                }
+            }
+
+            const name = row.querySelector('.jock-name').innerText;
+            const weight = row.querySelector('.jock-weight').innerText;
+            const exp = row.querySelector('.jock-exp').innerText;
+
+            const activeTbody = document.getElementById('active-jockeys-tbody');
+            const newRow = document.createElement('tr');
+            newRow.className = "bg-green-50 border-b hover:bg-gray-50 transition active-jockey-row";
+            newRow.innerHTML = `
+                <td class="px-6 py-4 font-bold text-gray-900">${name}</td>
+                <td class="px-6 py-4 text-center text-gray-600">${weight}</td>
+                <td class="px-6 py-4 text-center font-semibold text-blue-700">${exp}</td>
+                <td class="px-6 py-4 text-center">
+                    <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold">${rankInput}</span>
+                </td>
+                <td class="px-6 py-4 text-center">
+                    <button class="bg-red-50 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded transition font-semibold text-xs inline-flex items-center gap-1 shadow-sm" onclick="removeActiveJockey(this)" title="Xóa khỏi hệ thống">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Loại bỏ
+                    </button>
+                </td>
+            `;
+            activeTbody.appendChild(newRow);
+
+            const totalEl = document.getElementById('total-jockeys-count');
+            totalEl.textContent = parseInt(totalEl.textContent) + 1;
+
+            row.remove();
+            updatePendingCount();
+            alert("Đã duyệt thành công! Kỵ sĩ đã được đưa vào danh sách Hoạt động.");
+        }
+
+        function updatePendingCount() {
+            const hPending = document.querySelectorAll('.pending-horse-row').length;
+            const jPending = document.querySelectorAll('.pending-jockey-row').length;
+            document.getElementById('pending-count').textContent = hPending + jPending;
+        }
+        
+        updatePendingCount();
+
+    </script>
+</body>
+</html>
