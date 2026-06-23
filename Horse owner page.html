@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horse Owner - Horse Racing System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0d7c57',
+                        primaryHover: '#0a6345',
+                        bgLight: '#eefcf5',
+                        darkAccent: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-6">
+                    <span class="flex items-center text-primary font-bold text-xl">
+                        <i class="fa-solid fa-flag-checkered mr-2 text-2xl"></i> Horse Racing System
+                    </span>
+                    <span class="bg-green-100 text-primary text-xs font-bold px-3 py-1 rounded-md border border-green-200">
+                        Phân quyền: CHỦ NGỰA
+                    </span>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <i class="fa-solid fa-bell text-gray-500 text-lg cursor-pointer hover:text-primary transition"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+                    </div>
+                    <div class="h-8 w-px bg-gray-300"></div>
+                    <div class="flex items-center space-x-3 cursor-pointer">
+                        <div class="w-9 h-9 rounded-full bg-gray-100 border border-primary flex items-center justify-center text-primary">
+                            <i class="fa-solid fa-user text-sm"></i>
+                        </div>
+                        <div class="hidden md:block text-left">
+                            <p class="text-sm font-bold text-gray-800">Nguyen Van A</p>
+                            <p class="text-xs text-gray-500 italic">Phone: 0914XXXXXX</p>
+                        </div>
+                    </div>
+                    <button class="text-gray-500 hover:text-red-600 transition text-sm font-medium"><i class="fa-solid fa-right-from-bracket"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center space-x-4">
+                    <div class="p-4 bg-green-100 rounded-lg text-primary text-2xl"><i class="fa-solid fa-user-tie"></i></div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Tài khoản chính</h3>
+                        <p class="text-xl font-bold text-gray-800">Nguyen Van A</p>
+                        <p class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-phone mr-1"></i> Liên hệ: 0914XXXXXX</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-4 bg-amber-100 rounded-lg text-amber-600 text-2xl"><i class="fa-solid fa-wallet"></i></div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Số dư Ví Điện Tử</h3>
+                            <p class="text-2xl font-black text-gray-900 mt-1">5,000,000 <span class="text-sm font-normal text-gray-500">VND</span></p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <button onclick="alert('Điều hướng tới cổng VNPAY Deposit')" class="bg-primary hover:bg-primaryHover text-white text-xs font-bold px-3 py-1.5 rounded transition"><i class="fa-solid fa-arrow-down-long mr-1"></i> Nạp tiền</button>
+                        <button onclick="openWithdrawModal()" class="border border-gray-300 hover:bg-gray-50 text-gray-700 text-xs font-bold px-3 py-1.5 rounded transition"><i class="fa-solid fa-arrow-up-from-bracket mr-1"></i> Rút tiền</button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center space-x-4">
+                    <div class="p-4 bg-blue-100 rounded-lg text-blue-600 text-2xl"><i class="fa-solid fa-horse"></i></div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Tổng số ngựa sở hữu</h3>
+                        <p class="text-2xl font-bold text-gray-800 mt-1" id="total-horse-count">2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-sm border border-gray-200 rounded-xl overflow-hidden">
+                <div class="px-6 py-5 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900">Danh Sách Quản Lý Ngựa Đua Cá Nhân</h3>
+                        <p class="text-xs text-gray-500 mt-0.5">Theo dõi quy trình kiểm duyệt hồ sơ sức khỏe và định danh mã số từ Admin</p>
+                    </div>
+                    <button class="bg-primary hover:bg-primaryHover text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm transition flex items-center" onclick="openAddHorseModal()">
+                        <i class="fa-solid fa-plus mr-2"></i> Thêm Ngựa Đua Mới
+                    </button>
+                </div>
+
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-bgLight text-primary text-xs uppercase font-bold tracking-wider border-b border-gray-200">
+                            <th class="px-6 py-4">ID</th>
+                            <th class="px-6 py-4">Tên Ngựa</th>
+                            <th class="px-6 py-4">Chỉ số Cơ bản</th>
+                            <th class="px-6 py-4">Chứng nhận Y tế</th>
+                            <th class="px-6 py-4">Trạng thái thi đấu</th>
+                            <th class="px-6 py-4 text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="horse-table-body" class="text-gray-700 text-sm divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition" id="horse-row-1">
+                            <td class="px-6 py-4 font-mono text-xs text-gray-600 bg-gray-50 font-bold">LT-9982</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Lightning Thunder</td>
+                            <td class="px-6 py-4 text-xs">Giống: Thoroughbred<br>Tuổi: 4</td>
+                            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"><i class="fa-solid fa-check-double mr-1 text-[10px]"></i> Đã kiểm duyệt đạt</span></td>
+                            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Ready for competition</span></td>
+                            <td class="px-6 py-4 flex justify-center space-x-2">
+                                <button onclick="openInviteModal('Lightning Thunder')" title="Mời Jockey" class="border border-primary text-primary hover:bg-primary hover:text-white px-2 py-1.5 rounded transition">
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                </button>
+                                <button onclick="deleteHorse('horse-row-1')" title="Xóa ngựa" class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-2.5 py-1.5 rounded transition">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition" id="horse-row-2">
+                            <td class="px-6 py-4 font-mono text-xs text-gray-400 bg-gray-50">Chưa cấp mã</td>
+                            <td class="px-6 py-4 font-bold text-gray-900">Golden Star</td>
+                            <td class="px-6 py-4 text-xs">Giống: Quarter Horse<br>Tuổi: 3</td>
+                            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"><i class="fa-solid fa-spinner animate-spin mr-1 text-[10px]"></i> Chờ đối chiếu</span></td>
+                            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Pending</span></td>
+                            <td class="px-6 py-4 flex justify-center space-x-2">
+                                <span class="text-xs text-gray-400 italic mt-1 mr-2">Chờ xử lý</span>
+                                <button onclick="deleteHorse('horse-row-2')" title="Xóa ngựa" class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-2.5 py-1.5 rounded transition">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-white border-t border-gray-200 text-center py-4 text-xs text-gray-400 mt-auto">
+        &copy; 2026 Horse Racing System - Đồ án tốt nghiệp Hệ thống quản lý trường đua ngựa sạch.
+    </footer>
+
+    <div id="withdraw-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4 shadow-xl border border-gray-100 animate-in fade-in zoom-in-95 duration-200">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Tạo yêu cầu rút tiền tài khoản</h3>
+            <p class="text-xs text-gray-500 mb-4">Số tiền sẽ được trừ trực tiếp từ số dư ví và chờ phê duyệt thủ công.</p>
+            <form class="space-y-4" onsubmit="event.preventDefault(); closeWithdrawModal(); alert('Yêu cầu rút tiền thành công!');">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Số tiền rút (VND)</label>
+                    <input type="number" required placeholder="Nhập số tiền tối thiểu 100,000" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:border-primary">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Thông tin người thụ hưởng</label>
+                    <textarea required rows="2" placeholder="Ví dụ: Vietcombank, STK: 101456..., Chủ TK: BUI THANH NHAN" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:border-primary"></textarea>
+                </div>
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeWithdrawModal()" class="px-4 py-2 border border-gray-200 text-gray-600 rounded-lg text-xs font-bold hover:bg-gray-50 transition">Hủy bỏ</button>
+                    <button type="submit" class="px-4 py-2 bg-primary text-white font-bold rounded-lg text-xs hover:bg-primaryHover transition">Gửi lệnh</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="add-horse-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 overflow-y-auto">
+        <div class="bg-white rounded-xl p-6 max-w-2xl w-full mx-4 shadow-xl border border-gray-100 animate-in fade-in zoom-in-95 duration-200 my-8">
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-5">
+                <h3 class="text-xl font-bold text-gray-900 flex items-center">
+                    <i class="fa-solid fa-horse-head text-primary mr-2"></i> Đăng Ký Ngựa Đua Mới
+                </h3>
+                <button type="button" onclick="closeAddHorseModal()" class="text-gray-400 hover:text-red-500 transition text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form id="add-horse-form" class="space-y-5" onsubmit="event.preventDefault(); submitAddHorseForm();">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tên gọi của ngựa (Name) *</label>
+                        <input type="text" id="new-horse-name" required placeholder="Ví dụ: Red Comet" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Giống loài (Breed) *</label>
+                        <select id="new-horse-breed" required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white">
+                            <option value="" disabled selected>-- Chọn giống ngựa --</option>
+                            <option value="Thoroughbred">Thoroughbred</option>
+                            <option value="Quarter Horse">Quarter Horse</option>
+                            <option value="Arabian">Arabian</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Độ tuổi (Age) *</label>
+                        <input type="number" id="new-horse-age" min="2" max="20" required placeholder="Nhập số tuổi" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Trạng thái của ngựa <span class="text-red-500">*</span></label>
+                        <select id="new-horse-status" required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary bg-white">
+                            <option value="" disabled selected>-- Trạng thái --</option>
+                            <option value="Khỏe mạnh">Khỏe mạnh</option>
+                            <option value="Ổn Định">Ổn Định</option>
+                            <option value="Đang chấn thương">Đang chấn thương</option>
+                        </select>
+                    </div>
+                    
+                    <div class="md:col-span-2 mt-2">
+                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Chứng nhận Y tế & Tiêm phòng *</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-5 flex flex-col items-center justify-center hover:bg-gray-50 transition cursor-pointer" onclick="document.getElementById('health-file').click()">
+                            <i id="file-icon" class="fa-solid fa-file-medical text-3xl text-gray-400 mb-2 transition"></i>
+                            <p id="file-name-display" class="text-sm font-medium text-gray-700 text-center transition">Nhấn để tải lên tệp chứng nhận</p>
+                            <input type="file" required class="hidden" id="health-file" accept=".pdf,.jpg,.png" onchange="updateFileName(this)">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
+                    <button type="button" onclick="closeAddHorseModal()" class="px-5 py-2 border border-gray-300 text-gray-600 rounded-lg text-xs font-bold hover:bg-gray-50 transition">Hủy bỏ</button>
+                    <button type="submit" class="px-5 py-2 bg-primary text-white font-bold rounded-lg text-xs hover:bg-primaryHover transition">Gửi hồ sơ đăng ký</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="invite-jockey-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 overflow-y-auto">
+        <div class="bg-white rounded-xl p-6 max-w-lg w-full mx-4 shadow-xl border border-gray-100 animate-in fade-in zoom-in-95 duration-200 my-8">
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-5">
+                <h3 class="text-xl font-bold text-gray-900 flex items-center">
+                    <i class="fa-solid fa-handshake text-primary mr-2"></i> Gửi Lời Mời Hợp Tác
+                </h3>
+                <button type="button" onclick="closeInviteModal()" class="text-gray-400 hover:text-red-500 transition text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form class="space-y-5" onsubmit="event.preventDefault(); submitInviteForm();">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Ngựa tham gia thi đấu</label>
+                    <input type="text" id="invite-horse-name" readonly class="w-full border border-gray-300 bg-gray-100 text-gray-700 font-bold rounded-lg p-2.5 text-sm focus:outline-none cursor-not-allowed">
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Chọn Giải Đấu / Cuộc Đua <span class="text-red-500">*</span></label>
+                    <select required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white">
+                        <option value="" disabled selected>-- Chọn giải đấu sắp diễn ra --</option>
+                        <option value="1">Saigon Spring Cup 2026 (Cự ly 2000m)</option>
+                        <option value="2">Mekong Derby Grand Finale (Cự ly 2500m)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Chọn Jockey <span class="text-red-500">*</span></label>
+                    <select required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white">
+                        <option value="" disabled selected>-- Chọn Jockey từ danh sách hệ thống --</option>
+                        <option value="JCK-7716">Lê Minh Hải (Rank A) - Tỷ lệ thắng 45%</option>
+                        <option value="JCK-8890">Trần Văn Long (Rank B) - Tỷ lệ thắng 32%</option>
+                        <option value="JCK-9012">Nguyễn Hoàng Sơn (Rank A) - Tỷ lệ thắng 51%</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Lời Ngỏ (Tùy chọn)</label>
+                    <textarea rows="2" placeholder="Nhập thông điệp, yêu cầu đặc biệt..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"></textarea>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
+                    <button type="button" onclick="closeInviteModal()" class="px-5 py-2 border border-gray-300 text-gray-600 rounded-lg text-xs font-bold hover:bg-gray-50 transition">Hủy bỏ</button>
+                    <button type="submit" class="px-5 py-2 bg-primary text-white font-bold rounded-lg text-xs hover:bg-primaryHover transition flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Gửi Lời Mời
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal Rút Tiền
+        function openWithdrawModal() { document.getElementById('withdraw-modal').style.display = 'flex'; }
+        function closeWithdrawModal() { document.getElementById('withdraw-modal').style.display = 'none'; }
+        
+        // Modal Thêm Ngựa
+        function openAddHorseModal() { document.getElementById('add-horse-modal').style.display = 'flex'; }
+        function closeAddHorseModal() { document.getElementById('add-horse-modal').style.display = 'none'; }
+        
+        // Cập nhật tên file khi chọn upload
+        function updateFileName(input) {
+            const displayElement = document.getElementById('file-name-display');
+            const iconElement = document.getElementById('file-icon');
+            
+            if (input.files && input.files.length > 0) {
+                displayElement.innerText = 'Đã chọn: ' + input.files[0].name;
+                displayElement.classList.add('text-primary');
+                iconElement.classList.remove('fa-file-medical', 'text-gray-400');
+                iconElement.classList.add('fa-file-circle-check', 'text-primary');
+            } else {
+                displayElement.innerText = 'Nhấn để tải lên tệp chứng nhận';
+                displayElement.classList.remove('text-primary');
+                iconElement.classList.remove('fa-file-circle-check', 'text-primary');
+                iconElement.classList.add('fa-file-medical', 'text-gray-400');
+            }
+        }
+
+        // Biến đếm tạo ID động cho từng con ngựa mới
+        let horseIdCounter = 3;
+
+        // XỬ LÝ THÊM NGỰA MỚI VÀ CẬP NHẬT TỔNG SỐ
+        function submitAddHorseForm() {
+            const name = document.getElementById('new-horse-name').value;
+            const age = document.getElementById('new-horse-age').value;
+            const breedSelect = document.getElementById('new-horse-breed');
+            const breed = breedSelect.options[breedSelect.selectedIndex].text;
+            
+            const newRowId = 'horse-row-' + horseIdCounter;
+            horseIdCounter++;
+
+            const newRow = `
+                <tr class="hover:bg-gray-50 transition" id="${newRowId}">
+                    <td class="px-6 py-4 font-mono text-xs text-gray-400 bg-gray-50">Chưa cấp mã</td>
+                    <td class="px-6 py-4 font-bold text-gray-900">${name}</td>
+                    <td class="px-6 py-4 text-xs">Giống: ${breed}<br>Tuổi: ${age}</td>
+                    <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"><i class="fa-solid fa-spinner animate-spin mr-1 text-[10px]"></i> Chờ đối chiếu</span></td>
+                    <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Pending</span></td>
+                    <td class="px-6 py-4 flex justify-center space-x-2">
+                        <span class="text-xs text-gray-400 italic mt-1 mr-2">Chưa đủ Đ/K</span>
+                        <button onclick="deleteHorse('${newRowId}')" title="Xóa ngựa" class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-2.5 py-1.5 rounded transition">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+
+            // Chèn dòng vào cuối bảng
+            document.getElementById('horse-table-body').insertAdjacentHTML('beforeend', newRow);
+
+            // CẬP NHẬT TĂNG TỔNG SỐ NGỰA
+            updateTotalHorseCount(1);
+
+            // Reset form
+            document.getElementById('add-horse-form').reset();
+            const displayElement = document.getElementById('file-name-display');
+            const iconElement = document.getElementById('file-icon');
+            displayElement.innerText = 'Nhấn để tải lên tệp chứng nhận';
+            displayElement.classList.remove('text-primary');
+            iconElement.classList.remove('fa-file-circle-check', 'text-primary');
+            iconElement.classList.add('fa-file-medical', 'text-gray-400');
+
+            closeAddHorseModal();
+        }
+
+        // HÀM XỬ LÝ XÓA NGỰA
+        function deleteHorse(rowId) {
+            // Hiển thị hộp thoại xác nhận
+            const isConfirmed = confirm("Bạn có chắc chắn muốn xóa hồ sơ ngựa này khỏi hệ thống không?");
+            
+            if (isConfirmed) {
+                // Xóa phần tử tr ra khỏi giao diện
+                const rowElement = document.getElementById(rowId);
+                if (rowElement) {
+                    rowElement.remove();
+                    // CẬP NHẬT GIẢM TỔNG SỐ NGỰA
+                    updateTotalHorseCount(-1);
+                }
+            }
+        }
+
+        // HÀM CHUNG ĐỂ TĂNG/GIẢM SỐ LƯỢNG NGỰA TRÊN DASHBOARD
+        function updateTotalHorseCount(changeValue) {
+            const totalCountEl = document.getElementById('total-horse-count');
+            if (totalCountEl) {
+                // Lấy số hiện tại, cộng/trừ với thay đổi
+                let currentCount = parseInt(totalCountEl.innerText);
+                totalCountEl.innerText = currentCount + changeValue;
+            }
+        }
+
+        // Modal Gửi Lời Mời
+        function openInviteModal(horseName) {
+            document.getElementById('invite-horse-name').value = horseName;
+            document.getElementById('invite-jockey-modal').style.display = 'flex';
+        }
+        function closeInviteModal() {
+            document.getElementById('invite-jockey-modal').style.display = 'none';
+        }
+        function submitInviteForm() {
+            closeInviteModal();
+            alert('Đã gửi lời mời thành công! Lời mời của bạn đang nằm trong Hộp thư của Jockey chờ phản hồi.');
+        }
+    </script>
+</body>
+</html>
