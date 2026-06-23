@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jockey Workspace - Horse Racing System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0d7c57',
+                        primaryHover: '#0a6345',
+                        bgLight: '#eefcf5',
+                        darkAccent: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-6">
+                    <span class="flex items-center text-primary font-bold text-xl">
+                        <i class="fa-solid fa-flag-checkered mr-2 text-2xl"></i> Horse Racing System
+                    </span>
+                    <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-md border border-slate-200">
+                        Phân quyền: JOCKEY
+                    </span>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    
+                    <div class="relative" id="bell-wrapper">
+                        <div class="relative cursor-pointer flex items-center h-full pt-1" id="bell-icon" onclick="toggleNotifications()">
+                            <i class="fa-solid fa-bell text-gray-500 text-xl hover:text-primary transition"></i>
+                            <span id="notif-badge" class="absolute -top-1 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">3</span>
+                        </div>
+
+                        <div id="notif-dropdown" class="hidden absolute right-0 mt-4 w-80 sm:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 overflow-hidden">
+                            <div class="px-4 py-3 bg-slate-800 text-white flex justify-between items-center">
+                                <h3 class="text-sm font-bold uppercase tracking-wider flex items-center">
+                                    <i class="fa-solid fa-envelope-open mr-2 text-amber-400"></i> Thông báo & Lời mời
+                                </h3>
+                            </div>
+                            
+                            <div class="divide-y divide-gray-100 max-h-[400px] overflow-y-auto">
+                                
+                                <div class="p-4 flex flex-col items-start bg-amber-50/40 transition-all duration-300" id="notif-1">
+                                    <div class="space-y-1 w-full">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-sm font-bold text-gray-900">Từ: Bùi Thành Nhân</span>
+                                            <span class="status-tag bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded">Chờ phản hồi</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 mt-1">Yêu cầu Jockey tham gia đội và điều khiển ngựa tại giải <span class="underline font-medium">"Saigon Spring Cup 2026"</span>.</p>
+                                        <p class="text-[10px] text-gray-400 mt-1"><i class="fa-solid fa-clock mr-1"></i>Hạn phản hồi: Trước 2026-06-21</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-3 w-full justify-end action-buttons">
+                                        <button onclick="handleInvitation('accept', 'notif-1', 'Bùi Thành Nhân')" class="bg-primary hover:bg-primaryHover text-white text-xs font-bold px-3 py-1.5 rounded transition shadow-sm">Chấp nhận</button>
+                                        <button onclick="handleInvitation('reject', 'notif-1', 'Bùi Thành Nhân')" class="bg-white border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold px-3 py-1.5 rounded transition shadow-sm">Từ chối</button>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 flex flex-col items-start bg-amber-50/40 transition-all duration-300" id="notif-2">
+                                    <div class="space-y-1 w-full">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-sm font-bold text-gray-900">Từ: Lê Vĩnh Phát</span>
+                                            <span class="status-tag bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded">Chờ phản hồi</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 mt-1">Chiêu mộ Jockey cho vòng bảng giải <span class="underline font-medium">"Mekong Derby"</span> sắp tới.</p>
+                                        <p class="text-[10px] text-gray-400 mt-1"><i class="fa-solid fa-clock mr-1"></i>Hạn phản hồi: Trước 2026-06-25</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-3 w-full justify-end action-buttons">
+                                        <button onclick="handleInvitation('accept', 'notif-2', 'Lê Vĩnh Phát')" class="bg-primary hover:bg-primaryHover text-white text-xs font-bold px-3 py-1.5 rounded transition shadow-sm">Chấp nhận</button>
+                                        <button onclick="handleInvitation('reject', 'notif-2', 'Lê Vĩnh Phát')" class="bg-white border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold px-3 py-1.5 rounded transition shadow-sm">Từ chối</button>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 flex flex-col items-start bg-amber-50/40 transition-all duration-300" id="notif-3">
+                                    <div class="space-y-1 w-full">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-sm font-bold text-gray-900">Từ: Trần Quốc Toản</span>
+                                            <span class="status-tag bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded">Chờ phản hồi</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 mt-1">Đề nghị hợp tác thi đấu giao hữu tại trường đua <span class="underline font-medium">Đại Nam</span>.</p>
+                                        <p class="text-[10px] text-gray-400 mt-1"><i class="fa-solid fa-clock mr-1"></i>Hạn phản hồi: Trước 2026-06-28</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-3 w-full justify-end action-buttons">
+                                        <button onclick="handleInvitation('accept', 'notif-3', 'Trần Quốc Toản')" class="bg-primary hover:bg-primaryHover text-white text-xs font-bold px-3 py-1.5 rounded transition shadow-sm">Chấp nhận</button>
+                                        <button onclick="handleInvitation('reject', 'notif-3', 'Trần Quốc Toản')" class="bg-white border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold px-3 py-1.5 rounded transition shadow-sm">Từ chối</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="h-8 w-px bg-gray-300 ml-4"></div>
+                    
+                    <div class="flex items-center space-x-3 cursor-pointer pl-2">
+                        <img src="https://ui-avatars.com/api/?name=Le+Minh+Hai&background=1e293b&color=fff" alt="Avatar" class="w-9 h-9 rounded-full border border-gray-300">
+                        <div class="hidden md:block text-left">
+                            <p class="text-sm font-bold text-gray-800">Lê Minh Hải</p>
+                            <p class="text-xs text-gray-500 italic">Account ID: #JCK-7716</p>
+                        </div>
+                    </div>
+                    <button class="text-gray-500 hover:text-red-600 transition text-sm font-medium ml-2"><i class="fa-solid fa-right-from-bracket"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="md:col-span-1 space-y-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-amber-500 text-white font-black px-4 py-1 rounded-bl-xl text-sm shadow">
+                        RANK A
+                    </div>
+
+                    <img src="https://ui-avatars.com/api/?name=Le+Minh+Hai&background=1e293b&color=fff&size=128" alt="Avatar Jockey" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-bgLight shadow-inner">
+                    <h3 class="text-lg font-bold text-gray-900">Lê Minh Hải</h3>
+                    <p class="text-xs text-gray-400 font-mono">Jockey License ID: #JCK-7716</p>
+                    
+                    <div class="mt-4 bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2 text-xs border border-gray-100">
+                        <div>
+                            <span class="text-gray-400 block">Kinh nghiệm</span>
+                            <span class="font-bold text-gray-800 text-sm">6 năm thi đấu</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block">Trọng lượng</span>
+                            <span class="font-bold text-gray-800 text-sm">54.5 kg</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 border-t pt-4 text-left space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Chứng chỉ quốc tế:</span>
+                            <span class="text-green-600 font-bold"><i class="fa-solid fa-circle-check mr-0.5"></i> Đã đối chiếu gốc</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Tài khoản ví:</span>
+                            <span class="font-bold text-gray-800">Liên kết hoạt động</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex justify-between items-center">
+                    <button onclick="alert('Chuyển số dư thưởng về tài khoản ngân hàng cá nhân')" class="bg-darkAccent hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow-sm">
+                        <i class="fa-solid fa-money-bill-transfer mr-1"></i> Rút Quỹ
+                    </button>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-6">
+                
+                <div id="owner-horses-section" class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hidden">
+                    <h3 class="text-base font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-horse-head text-primary mr-2"></i> Danh Sách Chiến Mã Đã Chấp Thuận
+                    </h3>
+                    <p class="text-xs text-gray-500 mb-4">Dưới đây là danh sách các chiến mã thuộc sở hữu của những chủ ngựa mà bạn đã xác nhận lời mời.</p>
+                    
+                    <div id="horses-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        </div>
+                </div>
+
+                <div id="schedule-section" class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hidden">
+                    <h3 class="text-base font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-calendar-days text-primary mr-2"></i> Lịch Trình Trường Đua / Trạng Thái Ghép Cặp</h3>
+                    
+                    <div id="schedule-container" class="space-y-4">
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-gray-200 text-center py-4 text-xs text-gray-400 mt-auto">
+        &copy; 2026 Horse Racing System - Hệ thống quản lý trường đua ngựa chuyên nghiệp.
+    </footer>
+
+    <script>
+        // Danh sách các chủ ngựa đã được Jockey chấp nhận
+        let acceptedOwners = [];
+
+        // Dữ liệu mô phỏng danh sách ngựa của từng Chủ Ngựa
+        const ownersData = {
+            "Bùi Thành Nhân": [
+                { name: "Lightning Thunder", breed: "Thoroughbred", age: 4, history: "12 trận / 8 thắng" },
+                { name: "Storm Chaser", breed: "Arabian", age: 5, history: "18 trận / 10 thắng" }
+            ],
+            "Lê Vĩnh Phát": [
+                { name: "White Phoenix", breed: "Mustang", age: 3, history: "5 trận / 3 thắng" },
+                { name: "Fireball", breed: "Appaloosa", age: 4, history: "10 trận / 6 thắng" }
+            ],
+            "Trần Quốc Toản": [
+                { name: "Black Beauty", breed: "Friesian", age: 5, history: "15 trận / 9 thắng" },
+                { name: "Silver Bullet", breed: "Andalusian", age: 4, history: "8 trận / 5 thắng" }
+            ]
+        };
+
+        // Dữ liệu Lịch Trình theo từng chủ ngựa (Chứa 3 trạng thái phân biệt)
+        const scheduleTemplates = {
+            "Bùi Thành Nhân": `
+                <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-b border-r border-gray-100 shadow-sm">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900">Chung kết - Saigon Spring Cup</h4>
+                        <p class="text-[10px] text-primary font-semibold mt-0.5">Chủ ngựa: Bùi Thành Nhân</p>
+                        <p class="text-xs text-gray-500 mt-1">Thời gian: 25/06/2026 15:30 | <strong>Vị trí Lane: Số 4</strong></p>
+                        <p class="text-xs text-gray-600 mt-1">Ngựa điều khiển: <span class="text-green-700 font-bold">Lightning Thunder</span></p>
+                    </div>
+                    <span class="bg-green-100 text-green-800 font-bold text-[10px] px-3 py-1.5 rounded-full whitespace-nowrap">
+                        <i class="fa-solid fa-circle-check mr-1"></i> Đã được duyệt
+                    </span>
+                </div>
+            `,
+            "Lê Vĩnh Phát": `
+                <div class="border-l-4 border-amber-500 bg-amber-50 p-4 rounded-r-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-b border-r border-gray-100 shadow-sm">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900">Vòng bảng - Mekong Derby</h4>
+                        <p class="text-[10px] text-primary font-semibold mt-0.5">Chủ ngựa: Lê Vĩnh Phát</p>
+                        <p class="text-xs text-gray-500 mt-1">Thời gian: 02/07/2026 09:00 | <strong>Vị trí Lane: Chờ bốc thăm</strong></p>
+                        <p class="text-xs text-gray-600 mt-1">Ngựa điều khiển: <span class="text-amber-700 font-bold">White Phoenix</span></p>
+                    </div>
+                    <span class="bg-amber-100 text-amber-800 font-bold text-[10px] px-3 py-1.5 rounded-full whitespace-nowrap">
+                        <i class="fa-solid fa-spinner mr-1"></i> Đang chờ Admin duyệt
+                    </span>
+                </div>
+            `,
+            "Trần Quốc Toản": `
+                <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-b border-r border-gray-100 shadow-sm">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900">Giao hữu - Trường đua Đại Nam</h4>
+                        <p class="text-[10px] text-primary font-semibold mt-0.5">Chủ ngựa: Trần Quốc Toản</p>
+                        <p class="text-xs text-gray-500 mt-1">Thời gian: 10/07/2026 14:00 | <strong>Vị trí Lane: Hủy bỏ</strong></p>
+                        <p class="text-xs text-gray-600 mt-1">Ngựa điều khiển: <span class="text-red-700 font-bold">Black Beauty</span></p>
+                    </div>
+                    <span class="bg-red-100 text-red-800 font-bold text-[10px] px-3 py-1.5 rounded-full whitespace-nowrap">
+                        <i class="fa-solid fa-circle-xmark mr-1"></i> Bị từ chối
+                    </span>
+                </div>
+            `
+        };
+
+        // Bật/tắt dropdown thông báo
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notif-dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Đóng dropdown khi click ra ngoài
+        document.addEventListener('click', function(event) {
+            const wrapper = document.getElementById('bell-wrapper');
+            if (!wrapper.contains(event.target)) {
+                document.getElementById('notif-dropdown').classList.add('hidden');
+            }
+        });
+
+        // Hàm render TẤT CẢ dữ liệu của các chủ ngựa ĐÃ CHẤP NHẬN
+        function renderAcceptedData() {
+            const horsesContainer = document.getElementById('horses-container');
+            const scheduleContainer = document.getElementById('schedule-container');
+            const horsesSection = document.getElementById('owner-horses-section');
+            const scheduleSection = document.getElementById('schedule-section');
+
+            // Xóa rỗng để render lại từ đầu
+            horsesContainer.innerHTML = '';
+            scheduleContainer.innerHTML = '';
+
+            // Nếu chưa chấp nhận ai thì ẩn cả 2 bảng
+            if (acceptedOwners.length === 0) {
+                horsesSection.classList.add('hidden');
+                scheduleSection.classList.add('hidden');
+                return;
+            }
+
+            // Mở 2 bảng
+            horsesSection.classList.remove('hidden');
+            scheduleSection.classList.remove('hidden');
+
+            // Lặp qua danh sách chủ ngựa đã được chấp nhận và hiển thị dữ liệu
+            acceptedOwners.forEach(ownerName => {
+                
+                // 1. Gắn danh sách ngựa
+                const horses = ownersData[ownerName];
+                if (horses) {
+                    horses.forEach(horse => {
+                        const horseCard = `
+                            <div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition bg-bgLight/20 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-lg">${horse.name}</h4>
+                                            <p class="text-[10px] text-primary font-semibold mt-0.5">Chủ: ${ownerName}</p>
+                                        </div>
+                                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded">Sẵn sàng</span>
+                                    </div>
+                                    <div class="text-xs text-gray-600 mt-3 space-y-1">
+                                        <p><span class="text-gray-400">Giống:</span> ${horse.breed}</p>
+                                        <p><span class="text-gray-400">Tuổi:</span> ${horse.age} năm</p>
+                                        <p><span class="text-gray-400">Lịch sử:</span> ${horse.history}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        horsesContainer.innerHTML += horseCard;
+                    });
+                }
+
+                // 2. Gắn Lịch trình thi đấu tương ứng
+                if (scheduleTemplates[ownerName]) {
+                    scheduleContainer.innerHTML += scheduleTemplates[ownerName];
+                }
+            });
+        }
+
+        // Xử lý khi ấn Chấp nhận hoặc Từ chối lời mời
+        function handleInvitation(action, elementId, ownerName) {
+            const item = document.getElementById(elementId);
+
+            if(action === 'accept') {
+                alert(`Bạn đã CHẤP NHẬN lời mời từ ${ownerName}.`);
+                
+                // Thêm chủ ngựa vào danh sách nếu chưa có
+                if (!acceptedOwners.includes(ownerName)) {
+                    acceptedOwners.push(ownerName);
+                }
+                
+                // Cập nhật lại toàn bộ bảng
+                renderAcceptedData();
+
+                // Cuộn xuống xem dữ liệu
+                document.getElementById('owner-horses-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            } else {
+                alert(`Bạn đã TỪ CHỐI lời mời từ ${ownerName}.`);
+                // Từ chối thì không làm gì thêm ở bảng hiển thị (vẫn giữ nguyên trạng thái các lời mời đã chấp nhận khác)
+            }
+            
+            // Làm mờ thẻ thông báo (đánh dấu đã đọc)
+            item.classList.add('opacity-50', 'bg-gray-100');
+            item.classList.remove('bg-amber-50/40');
+            
+            // Ẩn các nút hành động
+            const actionButtons = item.querySelector('.action-buttons');
+            if(actionButtons) {
+                actionButtons.style.display = 'none';
+            }
+            
+            // Thay đổi trạng thái thẻ tag
+            const statusTag = item.querySelector('.status-tag');
+            if(statusTag) {
+                statusTag.textContent = 'Đã xử lý';
+                statusTag.className = 'status-tag bg-gray-200 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded';
+            }
+
+            // Giảm số lượng trên chuông
+            const badge = document.getElementById('notif-badge');
+            let currentCount = parseInt(badge.textContent);
+            if(!isNaN(currentCount) && currentCount > 0) {
+                currentCount--;
+                if(currentCount === 0) {
+                    badge.classList.add('hidden');
+                } else {
+                    badge.textContent = currentCount;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
